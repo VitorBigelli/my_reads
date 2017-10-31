@@ -4,6 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+.my-reads-header {
+	height: 50px;
+	background-color: #3232a2;
+	margin: 0;
+	padding-top: 50px;
+	text-transform: uppercase;
+	color: #ddd;
+}
+
 .books-search-header {
 	box-shadow: 3px 0px 5px;
 	display: flex;
@@ -27,4 +36,32 @@ body {
   background-repeat: no-repeat;
   background-size: 30px;
   font-size: 0;
+}
+
+.books-search-link {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-image: url('./icons/search.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.add-book-link {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-image: url('./icons/add-book.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+  position: absolute;
+  right: 0;
+  top: 40px;
 }
