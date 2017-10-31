@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Bookcase from './Bookcase'
 
 class BooksSearch extends Component {
 	
@@ -9,7 +10,7 @@ class BooksSearch extends Component {
 
 	render() {
 		const { query } = this.state		
-
+		const { books, onBookcaseChange } = this.props
 
 		return (
 			<div className='books-search'>
@@ -27,6 +28,7 @@ class BooksSearch extends Component {
 
 				</div>
 
+				<Bookcase books={books} />
 
 			</div>
 		)
