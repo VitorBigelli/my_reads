@@ -3,3 +3,28 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.books-search-header {
+	box-shadow: 3px 0px 5px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.books-search input {
+	display: block;
+	width: calc(100% - 65px);
+	height: 60px;
+	font-size: 20px;
+	border: 0;
+}
+
+.my-reads-link {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-image: url('./icons/arrow-back.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+}

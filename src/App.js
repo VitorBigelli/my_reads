@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import * as BooksAPI from './utils/BooksAPI'
+import { Route , Link } from 'react-router-dom';
+import * as BooksAPI from './utils/BooksAPI';
+import BooksSearch from './BooksSearch'
 import './App.css';
 
 class App extends Component {
@@ -40,11 +41,14 @@ class App extends Component {
 	    			<h3> Read </h3>
 
 	    		</div>
+
+	    		<Link to='/search' className='books-search-link' />
+
 	    	</div>
 	    )}/>
 
 	    <Route exact path='/search' render={ () => (
-	    	<h2> Book search </h2>
+	    	<BooksSearch books={this.state.books} />
 	    )}/>
 
 
