@@ -65,3 +65,22 @@ body {
   right: 0;
   top: 40px;
 }
+
+.bookcase-list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.bookcase-list-item {
+	width: 200px;
+	height: 300px;
+}
+
+.bookcase-control {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	transform: translate(40px, -180px);
+}

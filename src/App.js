@@ -19,44 +19,49 @@ class App extends Component {
 		))
 	}
 
+	changeBookcase = (previousBookcase, newBookcase, bookId) => (
+		this.setState( { currentlyReading: this.state.books.filter( (book) => ( book.id == bookId) ) })
+		
+	)
+
 	render() {
-	return (
-	  <div className="App">
-	    
-	    <Route exact path='/' render={ () => (
-	    	<div className='bookcases'>
-	    		<h2 className='my-reads-header'> My reads </h2>
+		return (
+		  <div className="App">
+		    
+		    <Route exact path='/' render={ () => (
+		    	<div className='bookcases'>
+		    		<h2 className='my-reads-header'> My reads </h2>
 
-	    		<div className='currently-reading-list'>
-	    			<h3> Currently reading </h3>
+		    		<div className='currently-reading-list'>
+		    			<h3> Currently reading </h3>
+		    			{console.log(this.state.currentlyReading)}
+		    		</div>
 
-	    		</div>
+		    		<div className='want-to-read-list'>
+		    			<h3> Want to read </h3>
 
-	    		<div className='want-to-read-list'>
-	    			<h3> Want to read </h3>
+		    		</div>
 
-	    		</div>
+		    		<div className='read-list'>
+		    			<h3> Read </h3>
 
-	    		<div className='read-list'>
-	    			<h3> Read </h3>
+		    		</div>
 
-	    		</div>
+		    		<Link to='/search' className='books-search-link' />
+		    		<Link to='/add' className='add-book-link' />
 
-	    		<Link to='/search' className='books-search-link' />
-	    		<Link to='/add' className='add-book-link' />
+		    		<div>"Add book" icon made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-	    		<div>"Add book" icon made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+		    	</div>
+		    )}/>
 
-	    	</div>
-	    )}/>
-
-	    <Route exact path='/search' render={ () => (
-	    	<BooksSearch books={this.state.books} onBookcaseChange={this.update} />
-	    )}/>
+		    <Route exact path='/search' render={ () => (
+		    	<BooksSearch books={this.state.books} onBookcaseChange={ (prevBookcase, newBookcase, bookId) => this.changeBookcase(prevBookcase, newBookcase, bookId)  }/>
+		    )}/>
 
 
-	  </div>
-	);
+		  </div>
+		)
 	}
 }
 

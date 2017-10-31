@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Bookcase from './Bookcase'
+import Book from './Book';
 
 class BooksSearch extends Component {
 	
@@ -8,9 +8,13 @@ class BooksSearch extends Component {
 		query: ''
 	}
 
+
+
 	render() {
 		const { query } = this.state		
 		const { books, onBookcaseChange } = this.props
+
+		console.log(books)
 
 		return (
 			<div className='books-search'>
@@ -28,7 +32,12 @@ class BooksSearch extends Component {
 
 				</div>
 
-				<Bookcase books={books} />
+				<ul className='bookcase-list'>
+					{ books.map( (book) => (
+						<Book key={book.id} book={book} onBookcaseChange={ (prevBookcase, newBookcase, bookId) => onBookcaseChange(prevBookcase, newBookcase, bookId) } />
+					
+					))}
+				</ul>
 
 			</div>
 		)
