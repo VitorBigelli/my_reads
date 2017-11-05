@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { Route , Link } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
-import BooksSearch from './BooksSearch'
+import BooksSearch from './BooksSearch';
+import Book from './Book';
 import './App.css';
 
 class App extends Component {
 
 	state = {
-		currentlyReading: [],
-		wantToRead: [],
-		read: [],
-		books: []
+		books: [],
+		currentlyReading: [], 
+		wantToRead: [], 
+		read: []
 	}
 
 	componentDidMount() {
 		BooksAPI.getAll().then( (books) => (
-			this.setState( {books} )
-		))
+			this.setState( {books: books } ))
+		)
 	}
 
-	changeBookcase = (previousBookcase, newBookcase, bookId) => (
-		this.setState( { currentlyReading: this.state.books.filter( (book) => ( book.id == bookId) ) })
-		
+	updateBookcase = (previousBookcase, newBookcase, bookId) => (
+		console.log(newBookcase)
 	)
 
 	render() {
@@ -34,17 +34,29 @@ class App extends Component {
 
 		    		<div className='currently-reading-list'>
 		    			<h3> Currently reading </h3>
-		    			{console.log(this.state.currentlyReading)}
+		    			
+		    			<ul className='books-list'>
+		    				{this.state.books.filter( (book) => (
+		    					console.log(book)
+		    				))}
+
+		    			</ul>
+
 		    		</div>
 
 		    		<div className='want-to-read-list'>
 		    			<h3> Want to read </h3>
+		    			<ul className='books-list'>
 
-		    		</div>
+		    			</ul>		    		</div>
+		    		<div>
 
 		    		<div className='read-list'>
 		    			<h3> Read </h3>
+		    			
+		    			<ul className='books-list'>
 
+		    			</ul>		    		</div>
 		    		</div>
 
 		    		<Link to='/search' className='books-search-link' />
@@ -56,7 +68,7 @@ class App extends Component {
 		    )}/>
 
 		    <Route exact path='/search' render={ () => (
-		    	<BooksSearch books={this.state.books} onBookcaseChange={ (prevBookcase, newBookcase, bookId) => this.changeBookcase(prevBookcase, newBookcase, bookId)  }/>
+   				<BooksSearch books={this.state.books} />
 		    )}/>
 
 
