@@ -44,7 +44,7 @@ class BooksSearch extends Component {
 
 					<ul className='bookcase-list'>
 						{showingBooks.map( (book) => ( 
-							<Book book={book} />
+							<Book key={book.title} book={book} />
 						))}
 					</ul>
 			
