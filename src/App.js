@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route , Link } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
 import BooksSearch from './BooksSearch';
+import Bookcase from './Bookcase';
 import Book from './Book';
 import './App.css';
 
@@ -16,8 +17,10 @@ class App extends Component {
 
 	componentDidMount() {
 		BooksAPI.getAll().then( (books) => (
-			this.setState( {books: books } ))
-		)
+			this.setState( {books: books.map( (book) => (
+				<Book book={book} />
+			))})
+		))
 	}
 
 	updateBookcase = (previousBookcase, newBookcase, bookId) => (
@@ -36,10 +39,11 @@ class App extends Component {
 		    			<h3> Currently reading </h3>
 		    			
 		    			<ul className='books-list'>
-		    				{this.state.books.filter( (book) => (
-		    					console.log(book)
-		    				))}
-
+		    				<Bookcase 
+		    					bookcase='currentlyReading' 
+		    					books={this.state.currentlyReading} 
+		    					onChangeBookcase={ (bookId) => this.changeBookcase('currentlyReading', bookId)}
+		    				/>
 		    			</ul>
 
 		    		</div>

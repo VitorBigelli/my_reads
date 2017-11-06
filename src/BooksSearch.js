@@ -21,7 +21,8 @@ class BooksSearch extends Component {
 
 		if (query) {
 			const match = new RegExp(escapeRegExp(query), 'i')
-			showingBooks = books.filter( (book) => ( match.test(book.title) || match.test(book.authors[0])))
+			console.log(books[0])
+			showingBooks = books.filter( (book) => ( match.test(book.props.book.title) || match.test(book.props.book.authors[0])))
 		} else {
 			showingBooks = []
 		}
@@ -44,7 +45,7 @@ class BooksSearch extends Component {
 
 					<ul className='bookcase-list'>
 						{showingBooks.map( (book) => ( 
-							<Book key={book.title} book={book} />
+							book
 						))}
 					</ul>
 			
