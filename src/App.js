@@ -56,16 +56,22 @@ class App extends Component {
 		    		<div className='want-to-read-list'>
 		    			<h3> Want to read </h3>
 		    			<ul className='books-list'>
-
-		    			</ul>		    		</div>
-		    		<div>
-
+		    				<Bookcase 
+		    					bookcase='wantToRead'
+		    					books={this.state.wantToRead}
+		    				/>
+		    			</ul>	
+		    		</div>
+		    		
 		    		<div className='read-list'>
 		    			<h3> Read </h3>
 		    			
 		    			<ul className='books-list'>
-
-		    			</ul>		    		</div>
+ 							<Bookcase 
+		    					bookcase='read'
+		    					books={this.state.read}
+		    				/>		    				
+		    			</ul>
 		    		</div>
 
 		    		<Link to='/search' className='books-search-link' />
