@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 
 class Bookcase extends Component {
 
-	render() {
-		const { bookcase, books, onChangeBookcase } = this.props
+	state = {
+		name: this.props.bookcase
+	}
 
+	render() {
+		const { bookcase, books } = this.props
 
 		return (
-			books.map( (book) => {
-				<div> 
-					{book}
-				</div>
-			})
+			books.map( (book) => (
+				book
+			))
 		)
 	}
 }

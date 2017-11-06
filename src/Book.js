@@ -7,7 +7,7 @@ class Book extends Component {
 	}
 
 	render() {
-		const { book } = this.props
+		const { book, onChangeBookcase } = this.props
 
 		console.log(book)
 
@@ -23,7 +23,9 @@ class Book extends Component {
 
 				<select 
 					defaultValue={this.state.bookcase} 
-					className='bookcase-control' 
+					className='bookcase-control'
+					onChange={ (event) => this.setState({ bookcase: event.target.value})} 
+					onChange={ (event) => onChangeBookcase(book.id, event.target.value, this.state.bookcase)} 
 				>	
 					<option value='none' > None </option>
 					<option value='currentlyReading' > Currently reading </option>

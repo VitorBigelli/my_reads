@@ -18,13 +18,19 @@ class App extends Component {
 	componentDidMount() {
 		BooksAPI.getAll().then( (books) => (
 			this.setState( {books: books.map( (book) => (
-				<Book book={book} />
+				<Book book={book} onChangeBookcase={ (bookId, newBookcase, prevBookcase) => this.modifyBookcase(bookId, newBookcase, prevBookcase)}/>
 			))})
 		))
 	}
 
-	updateBookcase = (previousBookcase, newBookcase, bookId) => (
-		console.log(newBookcase)
+	modifyBookcase = (bookId, newBookcase, previousBookcase) => (
+		this.setState( {
+			currentlyReading: this.state.currentlyReading.concat( 
+				this.state.books.filter( (book) => (
+					book.props.book.id == bookId)
+				)
+			)
+		})
 	)
 
 	render() {
@@ -42,7 +48,6 @@ class App extends Component {
 		    				<Bookcase 
 		    					bookcase='currentlyReading' 
 		    					books={this.state.currentlyReading} 
-		    					onChangeBookcase={ (bookId) => this.changeBookcase('currentlyReading', bookId)}
 		    				/>
 		    			</ul>
 
