@@ -24,6 +24,17 @@ class App extends Component {
 		))
 	}
 
+	addBook(book) {
+		BooksAPI.create(book).then( (book) => {
+			this.setState( (state => (
+			{
+				books: state.contacts.concat(
+					<Book book={book} onChangeBookcase={ (bookId, newBookcase, prevBookcase) => this.modifyBookcase(bookId, newBookcase, prevBookcase)}/>
+				)
+			})))
+		})
+	}
+
 	modifyBookcase(bookId, newBookcase, previousBookcase) {
 		
 		if (newBookcase == 'currentlyReading') {
@@ -121,7 +132,12 @@ class App extends Component {
 		    )}/>
 
 		    <Route exact path='/add' render={ () => (
-		    	<AddBook />
+		    	<AddBook 
+		    		onAddBook={ (book) => (
+		    			this.addBook(book)
+		    			history.push('/')
+		    		)}
+		    	/>
 		    )}/>
 
 		  </div>
