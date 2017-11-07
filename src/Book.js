@@ -3,21 +3,21 @@ import React, { Component } from 'react';
 class Book extends Component {
 
 	state = {
-		bookcase: 'none'
+		bookcase: ''
 	}
 
 	updateBookcase(bookId, newBookcase, previousBookcase) {
+	
+		this.props.onChangeBookcase(bookId, newBookcase, previousBookcase)
+
 		this.setState( {
 			bookcase: newBookcase
 		})
 
-		this.props.onChangeBookcase(bookId, newBookcase, previousBookcase)
 	}
 
 	render() {
 		const { book, onChangeBookcase } = this.props
-
-		console.log(book)
 
 		return (
 			<li key={book.title} className='bookcase-list-item'>

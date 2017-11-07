@@ -23,15 +23,48 @@ class App extends Component {
 		))
 	}
 
-	modifyBookcase = (bookId, newBookcase, previousBookcase) => (
-		this.setState( {
-			currentlyReading: this.state.currentlyReading.concat( 
-				this.state.books.filter( (book) => (
-					book.props.book.id == bookId)
+	modifyBookcase(bookId, newBookcase, previousBookcase) {
+		
+		if (newBookcase == 'currentlyReading') {
+			this.setState( {
+				currentlyReading: this.state.currentlyReading.concat( 
+					this.state.books.filter( (book) => (
+						book.props.book.id == bookId)
+					)
 				)
-			)
-		})
-	)
+			})
+		} else if (newBookcase == 'wantToRead') {
+			this.setState( {
+				wantToRead: this.state.wantToRead.concat( 
+					this.state.books.filter( (book) => (
+						book.props.book.id == bookId)
+					)
+				)
+			})
+		} else if (newBookcase == 'read') {
+			this.setState( {
+				read: this.state.read.concat( 
+					this.state.books.filter( (book) => (
+						book.props.book.id == bookId)
+					)
+				)
+			})
+		}
+
+		if (previousBookcase == 'currentlyReading') {
+			this.setState( {
+				currentlyReading: this.state.currentlyReading.filter( (book) => (book.props.book.id != bookId))
+			})
+		} else if (previousBookcase == 'wantToRead') {
+			this.setState( {
+				wantToRead: this.state.wantToRead.filter( (book) => (book.props.book.id != bookId))
+			})
+		} else if (previousBookcase == 'read') {
+			this.setState( {
+				read: this.state.read.filter( (book) => (book.props.book.id != bookId))
+			})
+		}
+	} 
 
 	render() {
 		return (
