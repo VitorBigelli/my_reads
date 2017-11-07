@@ -4,6 +4,7 @@ import * as BooksAPI from './utils/BooksAPI';
 import BooksSearch from './BooksSearch';
 import Bookcase from './Bookcase';
 import Book from './Book';
+import AddBook from './AddBook';
 import './App.css';
 
 class App extends Component {
@@ -119,6 +120,9 @@ class App extends Component {
    				<BooksSearch books={this.state.books} />
 		    )}/>
 
+		    <Route exact path='/add' render={ () => (
+		    	<AddBook />
+		    )}/>
 
 		  </div>
 		)

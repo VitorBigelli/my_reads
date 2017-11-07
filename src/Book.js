@@ -7,13 +7,11 @@ class Book extends Component {
 	}
 
 	updateBookcase(bookId, newBookcase, previousBookcase) {
-	
-		this.props.onChangeBookcase(bookId, newBookcase, previousBookcase)
-
 		this.setState( {
 			bookcase: newBookcase
 		})
-
+	
+		this.props.onChangeBookcase(bookId, newBookcase, previousBookcase)
 	}
 
 	render() {
