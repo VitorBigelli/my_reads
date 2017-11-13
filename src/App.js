@@ -12,21 +12,33 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+
+		const cachedBooks = localStorage.getItem('myReads');
+
+		console.log(cachedBooks)
+
+		if (cachedBooks) {
+			this.setState( { books: JSON.parse(cachedBooks) } );
+			return;
+		} 
+
 		BooksAPI.getAll().then( (books) => {
 			books.map( book => book.status = 'None')
+			localStorage.setItem('myReads', JSON.stringify(books))
 			this.setState( { books } )
 		})
+	
+	
 	}
 
 	onChangeBookcase = (event, book) => {
 		event.preventDefault() 
 		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
 		book.status = event.target.value 
-
+		localStorage.setItem('myReads', JSON.stringify(filteredBooks.concat( [ book ])))
 		this.setState( {
 			books: filteredBooks.concat( [ book ] )
 		})
-		
 	}
 
 	render() {
