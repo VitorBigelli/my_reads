@@ -19,6 +19,7 @@ const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 					<img 
 						src={book.imageLinks.thumbnail}
 						className='book-cover-image'
+						height={200}
 					/>
 					<p className="book-title"> {book.title} </p>
 					<p className="book-author"> {book.authors[0]} </p>

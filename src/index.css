@@ -74,7 +74,7 @@ body {
 .bookcase-list-item {
   list-style: none;
 	width: 200px;
-	height: 300px;
+	height: auto;
 }
 
 .book-title {
@@ -87,6 +87,19 @@ body {
 	height: 60px;
 	position: absolute;
 	transform: translate(40px, -180px);
+  color: rgba(255, 255, 255, 0);
+  background: #3232a2;
+  background-image: url('./icons/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.bookcase-control option {
+  background-color: #fff; 
+  color: #000;
 }
 
 .add-book-form-container {

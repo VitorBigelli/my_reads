@@ -15,7 +15,6 @@ class App extends Component {
 		BooksAPI.getAll().then( (books) => {
 			books.map( book => book.status = 'None')
 			this.setState( { books } )
-
 		})
 	}
 
@@ -27,6 +26,7 @@ class App extends Component {
 		this.setState( {
 			books: filteredBooks.concat( [ book ] )
 		})
+		
 	}
 
 	render() {
