@@ -140,7 +140,6 @@ body {
   height: 150px;
   width: 100px;
   background-color: white;
-  background-image: url('./icons/book.svg');
   background-size: 100px 100px;
   background-position: center;
   background-repeat: no-repeat;
@@ -148,5 +147,5 @@ body {
 }
 
 .manage-options {
-  
+
 }

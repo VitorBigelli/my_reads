@@ -17,8 +17,6 @@ class App extends Component {
 
 		const cachedBooks = localStorage.getItem('myReads');
 
-		console.log(cachedBooks)
-
 		if (cachedBooks) {
 			this.setState( { books: JSON.parse(cachedBooks) } );
 			return;
@@ -26,71 +24,73 @@ class App extends Component {
 
 		BooksAPI.getAll().then( (books) => {
 			books.map( book => book.status = 'None')
-			localStorage.setItem('myReads', JSON.stringify(books))
-			this.setState( { books } )
+			this.updateLocalStorage(books)
+			this.updateState(books)
 		})
-	
-	
+	}
+
+	updateLocalStorage = (books) => {
+		localStorage.setItem('myReads', JSON.stringify(books))
+		return;
+	}
+
+	updateState = (newBooks) => {
+		this.setState( { books: newBooks } )
+		return;
 	}
 
 	registerBook = ({ title, author, cover}) => {
 
 		const book = {
-			id: this.state.length + 1,
+			id: this.state.books.length + 1,
 			title: title, 
 			authors: [author],
 			imageLinks: {
 				thumbnail: cover
 			} 
 		}
-
-		localStorage.setItem('myReads', JSON.stringify(this.state.books.concat([book])))
-		this.setState( {
-			books: JSON.parse(localStorage.getItem('myReads'))
-		})
+		const newBooks = this.state.books.concat([book]) 
+		
+		this.updateLocalStorage(newBooks)
+		this.updateState(newBooks)
 	}
 
 	updateBook = (values, book) => {
-		const { title, author, cover} = values
-		
-		if (!cover) {
-			const cover = book.imageLinks.thumbnail
-		}
+
+		const { title, author } = values
 
 		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id) )
+
 		const updatedBook = {
+			id: book.id,
 			title: title, 
 			authors: [author],
 			imageLinks: {
-				thumbnail: cover
+				thumbnail: book.imageLinks.thumbnail
 			},
 			status: book.status
 		}
 		const newBooks = filteredBooks.concat( [ updatedBook ]);
-		localStorage.setItem('myReads', JSON.stringify(newBooks))
-
-		this.setState( {
-			books: newBooks
-		})
+		
+		this.updateLocalStorage(newBooks)
+		this.updateState(newBooks)
 	}
 
 	deleteBook = (bookId) => {
 		const filteredBooks = this.state.books.filter( _ => _.id !== bookId)
-		localStorage.setItem('myReads', JSON.stringify(filteredBooks))
-		this.setState( {
-			books: filteredBooks
-		})
-		
+		this.updateLocalStorage(filteredBooks)
+		this.updateState(filteredBooks)
 	}
 
 	onChangeBookcase = (event, book) => {
 		event.preventDefault() 
-		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
 		book.status = event.target.value 
-		localStorage.setItem('myReads', JSON.stringify(filteredBooks.concat( [ book ])))
-		this.setState( {
-			books: filteredBooks.concat( [ book ] )
-		})
+		console.log(book.id)
+		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
+		const newBooks = filteredBooks.concat( [book] )
+
+		this.updateLocalStorage(newBooks)
+		this.updateState(newBooks)
 	}
 
 	render() {

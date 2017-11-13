@@ -29,11 +29,11 @@ class ManageBooks extends Component{
 							<form 
 								className="edit-book-form"
 								onSubmit={event => this.handleSubmit(event, book)}>
-								<ImageInput 
+								<img 
+									src={book.imageLinks.thumbnail}
 									className="edit-book-cover"
-									name="cover"
+									name="currentCover"
 									maxHeight={100}
-									style={{ backgroundImage: `url(${book.imageLinks.thumbnail})` } }
 								/>
 								<p> Title: <input 
 									type="text"

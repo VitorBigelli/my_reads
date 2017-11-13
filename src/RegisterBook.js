@@ -40,6 +40,7 @@ class RegisterBook extends Component{
 					<button 
 						type="submit"
 					>Register</button>
+
 				</form>
 			</div>
 		)
