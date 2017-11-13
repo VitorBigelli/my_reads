@@ -18,7 +18,7 @@ class RegisterBook extends Component{
 	render() {
 		return (
 			<div className='add-book-form-container'>
-				<Link to='/' className='my-reads-link'>
+				<Link to='/manage' className='my-reads-link'>
 					Back
 				</Link>
 				<form className='add-book-form' onSubmit={ event => this.handleSubmit(event)}>

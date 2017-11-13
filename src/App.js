@@ -144,7 +144,7 @@ class App extends Component {
 		    <Route exact path='/register' render={ ({history}) => (
 		    	<RegisterBook onSubmit={ values => {
 		    		this.registerBook(values)
-		    		history.push('/')
+		    		history.push('/manage')
 		    	}} />
 		    	)}
 		    />
