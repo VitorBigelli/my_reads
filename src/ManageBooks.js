@@ -55,6 +55,7 @@ class ManageBooks extends Component{
 										type="submit"
 									> Save changes </button>
 									<button
+										className='delete-book'
 										onClick={() => deleteBook(book.id)}> Delete book </button>
 								</div>
 							</form>
@@ -64,6 +65,14 @@ class ManageBooks extends Component{
 					}
 
 				</ul>
+
+				<footer className="manage-books-footer">
+					<button 
+						onClick={() => restoreDefault()}
+					>
+					Restore default
+					</button>
+				</footer>
 			</div>
 		)
 	}

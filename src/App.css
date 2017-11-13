@@ -221,3 +221,24 @@ footer {
 footer a {
   color: #eee;
 }
+
+.manage-books-footer {
+  text-align: right;
+}
+
+button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  margin: 2px;
+  box-shadow: none;
+}
+
+.delete-book {
+  color: #fff;
+  background-color: #ff2222;
+}
+
+button:hover {
+  cursor: pointer;
+}

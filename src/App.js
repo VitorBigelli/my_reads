@@ -102,6 +102,12 @@ class App extends Component {
 		this.updateState(newBooks)
 	}
 
+	// Clear the localStorage
+	restoreDefault = () => {
+		localStorage.clear();
+		this.componentDidMount();
+	}
+
 	render() {
 		const { books } = this.state
 
