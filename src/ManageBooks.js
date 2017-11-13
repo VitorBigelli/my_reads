@@ -23,7 +23,7 @@ class ManageBooks extends Component{
 				<Link to='/' className='my-reads-link'>
 					Back
 				</Link>
-				<ul>
+				<ul className="manage-books-list">
 					{ books.map( (book) => (
 						<li key={book.id} className="edit-book-form-container">
 							<form 
