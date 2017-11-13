@@ -27,16 +27,16 @@ class RegisterBook extends Component{
 						name="cover"
 						maxHeight={200}
 					/>
-					<input 
+					<p> Title: <input 
 						type="text"
 						name="title"
 						className="new-book-title"
-					/>
-					<input 
+					/></p>
+					<p> Author: <input 
 						type="text"
 						name="author"
 						className="new-book-author"
-					/>
+					/></p>
 					<button 
 						type="submit"
 					>Register</button>

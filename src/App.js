@@ -5,6 +5,7 @@ import BooksSearch from './BooksSearch';
 import Bookcase from './Bookcase';
 import './App.css';
 import RegisterBook from './RegisterBook';
+import ManageBooks from './ManageBooks';
 
 class App extends Component {
 
@@ -47,6 +48,39 @@ class App extends Component {
 		this.setState( {
 			books: JSON.parse(localStorage.getItem('myReads'))
 		})
+	}
+
+	updateBook = (values, book) => {
+		const { title, author, cover} = values
+		
+		if (!cover) {
+			const cover = book.imageLinks.thumbnail
+		}
+
+		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id) )
+		const updatedBook = {
+			title: title, 
+			authors: [author],
+			imageLinks: {
+				thumbnail: cover
+			},
+			status: book.status
+		}
+		const newBooks = filteredBooks.concat( [ updatedBook ]);
+		localStorage.setItem('myReads', JSON.stringify(newBooks))
+
+		this.setState( {
+			books: newBooks
+		})
+	}
+
+	deleteBook = (bookId) => {
+		const filteredBooks = this.state.books.filter( _ => _.id !== bookId)
+		localStorage.setItem('myReads', JSON.stringify(filteredBooks))
+		this.setState( {
+			books: filteredBooks
+		})
+		
 	}
 
 	onChangeBookcase = (event, book) => {
@@ -100,11 +134,24 @@ class App extends Component {
    				/>
 		    )}/>
 
-		    <Route exact path='/register' render={ () => (
-		    	<RegisterBook onSubmit={ values => this.registerBook(values)} />
+		    <Route exact path='/register' render={ ({history}) => (
+		    	<RegisterBook onSubmit={ values => {
+		    		this.registerBook(values)
+		    		history.push('/')
+		    	}} />
 		    	)}
 		    />
-		    
+
+		    <Route exact path='/manage' render={ () => (
+		    	<ManageBooks 
+		    		books={books}
+		    		updateBook={ (values, book) => this.updateBook(values, book) }
+		    		deleteBook={ (book) => this.deleteBook(book)}
+		    		restoreDefault={this.restoreDefault}
+		    	/>
+
+		    	)}
+		    />
 		  </div>
 		)
 	}

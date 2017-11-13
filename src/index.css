@@ -125,3 +125,28 @@ body {
   background-repeat: no-repeat;
   margin: auto;
 }
+
+.edit-book-form-container {
+  width: 90%; 
+  margin: auto;
+  margin-top: 15px; 
+  box-shadow: 0 3px 3px #777;
+  list-style: none;
+  padding: 10px;
+}
+
+.edit-book-cover {
+  min-width: 60px;
+  height: 150px;
+  width: 100px;
+  background-color: white;
+  background-image: url('./icons/book.svg');
+  background-size: 100px 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.manage-options {
+  
+}
