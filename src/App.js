@@ -113,6 +113,7 @@ class App extends Component {
 		    		<Link to='/search' className='books-search-link' />
 		    		<Link to='/manage' className='books-manage' />
 	
+		    		<div className='my-reads-header-bg'></div>
 		    		<h2 className='my-reads-header'> My reads </h2>
 
 		    		{ bookshelfs.map( bookshelf => (

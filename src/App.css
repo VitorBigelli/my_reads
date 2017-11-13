@@ -1,3 +1,7 @@
+body {
+  font-family: 'Catamaran', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -28,12 +32,23 @@
 }
 
 .my-reads-header {
-  height: 50px;
+  height: 100px;
   background-color: #3232a2;
   margin: 0;
   padding-top: 50px;
   text-transform: uppercase;
-  color: #ddd;
+  color: #fff;
+  background: rgba(0,0,0,0.3);
+  font-size: 40px;
+}
+
+.my-reads-header-bg {
+    background-image: url("http://smart-peer.com/wp-content/uploads/2015/12/cropped-bookshelf_header.png");
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 150px; 
 }
 
 .books-search-header {
