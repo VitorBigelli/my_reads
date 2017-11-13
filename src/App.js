@@ -32,7 +32,8 @@ class App extends Component {
 	
 	}
 
-	registerBook = ( title, author, cover) => {
+	registerBook = ({ title, author, cover}) => {
+
 		const book = {
 			id: this.state.length + 1,
 			title: title, 
@@ -42,7 +43,7 @@ class App extends Component {
 			} 
 		}
 
-		localStorage.setItem('myread', JSON.stringify(this.state.books.concat([book])))
+		localStorage.setItem('myReads', JSON.stringify(this.state.books.concat([book])))
 		this.setState( {
 			books: JSON.parse(localStorage.getItem('myReads'))
 		})
@@ -85,8 +86,9 @@ class App extends Component {
 		    		))}
 
 		    		<Link to='/search' className='books-search-link' />
-
+		    		<Link to='/register' className='books-register' />
 		    		<div>"Add book" icon made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
 
 		    	</div>
 		    )}/>
@@ -99,7 +101,7 @@ class App extends Component {
 		    )}/>
 
 		    <Route exact path='/register' render={ () => (
-		    	<RegisterBook />
+		    	<RegisterBook onSubmit={ values => this.registerBook(values)} />
 		    	)}
 		    />
 		    
