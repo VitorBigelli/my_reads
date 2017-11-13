@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImageInput from './ImageInput';
 import serializeForm from 'form-serialize';
+import { Link } from 'react-router-dom';
 
 class RegisterBook extends Component{
 	
@@ -17,6 +18,9 @@ class RegisterBook extends Component{
 	render() {
 		return (
 			<div className='add-book-form-container'>
+				<Link to='/' className='my-reads-link'>
+					Back
+				</Link>
 				<form className='add-book-form' onSubmit={ event => this.handleSubmit(event)}>
 					<ImageInput 
 						className='new-book-cover'
