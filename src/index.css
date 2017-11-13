@@ -77,6 +77,10 @@ body {
 	height: 300px;
 }
 
+.book-title {
+  font-weight: bold;
+}
+
 .bookcase-control {
 	border-radius: 50%;
 	width: 60px;

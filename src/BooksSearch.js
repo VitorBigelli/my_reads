@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import escapeRegExp from 'escape-string-regexp'
-import Book from './Book';
+import escapeRegExp from 'escape-string-regexp';
+import Bookcase from './Bookcase';
 
 class BooksSearch extends Component {
 	
@@ -42,12 +42,8 @@ class BooksSearch extends Component {
 						></input>
 					</div>
 
-					<ul className='bookcase-list'>
-						{showingBooks.map( (book) => ( 
-							book
-						))}
-					</ul>
-			
+					<Bookcase books={showingBooks} />			
+
 			</div>
 		)
 	}
