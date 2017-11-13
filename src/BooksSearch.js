@@ -10,7 +10,7 @@ class BooksSearch extends Component {
 	}
 
 	updateQuery = (query) => (
-		this.setState( {query: query.trim()} )
+		this.setState( { query: query } )
 	)
 
 	render() {
@@ -21,10 +21,12 @@ class BooksSearch extends Component {
 
 		if (query) {
 			const match = new RegExp(escapeRegExp(query), 'i')
-			showingBooks = books.filter( (book) => ( match.test(book.props.book.title) || match.test(book.props.book.authors[0])))
+			showingBooks = books.filter( (book) => ( match.test(book.title) || match.test(book.authors[0])))
 		} else {
 			showingBooks = []
 		}
+
+		console.log(showingBooks)
 
 		return (
 
@@ -42,7 +44,9 @@ class BooksSearch extends Component {
 						></input>
 					</div>
 
-					<Bookcase books={showingBooks} />			
+					<Bookcase 
+						books={showingBooks} 
+					/>			
 
 			</div>
 		)

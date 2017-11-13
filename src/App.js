@@ -20,46 +20,26 @@ class App extends Component {
 	render() {
 		const { books } = this.state
 
+		const bookcases = [
+			{ title: 'Currently Reading', books }, 
+			{ title: 'Want To Read', books }, 
+			{ title: 'Read', books }
+		]
 
 		return (
 		  <div className="App">
 		    
 		    <Route exact path='/' render={ () => (
 		    	<div className='bookcases'>
+		    		
 		    		<h2 className='my-reads-header'> My reads </h2>
 
-		    		<div className='currently-reading-list'>
-		    			<h3> Currently reading </h3>
-		    			
-		    			<ul className='books-list'>
-		    				<Bookcase 
-		    					bookcase='currentlyReading' 
-		    					books={books} 
-		    				/>
-		    			</ul>
-
-		    		</div>
-
-		    		<div className='want-to-read-list'>
-		    			<h3> Want to read </h3>
-		    			<ul className='books-list'>
-		    				<Bookcase 
-		    					bookcase='wantToRead'
-		    					books={books}
-		    				/>
-		    			</ul>	
-		    		</div>
-		    		
-		    		<div className='read-list'>
-		    			<h3> Read </h3>
-		    			
-		    			<ul className='books-list'>
- 							<Bookcase 
-		    					bookcase='read'
-		    					books={books}
-		    				/>		    				
-		    			</ul>
-		    		</div>
+		    		{ bookcases.map( bookcase => (
+		    			<Bookcase 
+		    				title={bookcase.title}
+		    				books={bookcase.books}
+		    			/>
+		    		))}
 
 		    		<Link to='/search' className='books-search-link' />
 
