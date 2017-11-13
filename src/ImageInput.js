@@ -1,3 +1,5 @@
+// Code obtained from Udacity's React Developer Nanodegree program
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
