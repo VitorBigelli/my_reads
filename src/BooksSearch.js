@@ -15,7 +15,7 @@ class BooksSearch extends Component {
 
 	render() {
 		const { query } = this.state		
-		const { books } = this.props
+		const { books, onChangeBookcase } = this.props
 
 		let showingBooks
 
@@ -45,7 +45,8 @@ class BooksSearch extends Component {
 					</div>
 
 					<Bookcase 
-						books={showingBooks} 
+						books={showingBooks}
+						onChangeBookcase={ (event, book) => onChangeBookcase(event, book)} 
 					/>			
 
 			</div>

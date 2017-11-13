@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 
-const Bookcase = ( { books, title = ''} ) => {
+const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 
-	return (
+	return (		
+
 		<div className="bookcase-content">
 			<h3> {title} </h3>
 			<ul className="bookcase-list">
 			{ books.map( (book) => (
-				<li className="bookcase-list-item">
+				<li 
+					key={book.id}
+					className="bookcase-list-item">
+				/>
 					<img 
 						src={book.imageLinks.thumbnail}
 						className='book-cover-image'
@@ -15,7 +19,11 @@ const Bookcase = ( { books, title = ''} ) => {
 					<p className="book-title"> {book.title} </p>
 					<p className="book-author"> {book.authors[0]} </p>
 
-					<select defaultvalue={book.status} className="bookcase-control">
+					<select 
+						defaultValue={book.status} 
+						className="bookcase-control"
+						onChange={ (event) => onChangeBookcase(event, book) }
+					>
 						<option value='none' > None </option>
 						<option value='currentlyReading' > Currently Reading </option>
 						<option value='wantToRead' > Want to Read </option>

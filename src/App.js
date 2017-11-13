@@ -17,6 +17,16 @@ class App extends Component {
 		))
 	}
 
+	onChangeBookcase = (event, book) => {
+		event.preventDefault() 
+		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
+		book.status = event.target.value 
+
+		this.setState( {
+			books: filteredBooks.concat( [ book ] )
+		})
+	}
+
 	render() {
 		const { books } = this.state
 
@@ -38,6 +48,7 @@ class App extends Component {
 		    			<Bookcase 
 		    				title={bookcase.title}
 		    				books={bookcase.books}
+		    				onChangeBookcase={ (event) => this.onChangeBookcase(event)}
 		    			/>
 		    		))}
 
@@ -49,7 +60,10 @@ class App extends Component {
 		    )}/>
 
 		    <Route exact path='/search' render={ () => (
-   				<BooksSearch books={books} />
+   				<BooksSearch 
+   					books={books} 
+   					onChangeBookcase={ (event, book) => this.onChangeBookcase(event, book) }
+   				/>
 		    )}/>
 
 		    
