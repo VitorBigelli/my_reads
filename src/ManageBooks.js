@@ -35,7 +35,7 @@ class ManageBooks extends Component{
 									src={book.imageLinks.thumbnail}
 									className="edit-book-cover"
 									name="currentCover"
-									maxHeight={100}
+									height={100}
 								/>
 								<p> Title: <input 
 									type="text"

@@ -29,16 +29,19 @@ class App extends Component {
 		})
 	}
 
+	// This function updates the 'myReads' in localStorage
 	updateLocalStorage = (books) => {
 		localStorage.setItem('myReads', JSON.stringify(books))
 		return;
 	}
 
+	// This function updates the App component state
 	updateState = (newBooks) => {
 		this.setState( { books: newBooks } )
 		return;
 	}
 
+	// This function is called when the user register a new book
 	registerBook = ({ title, author, cover}) => {
 
 		const book = {
@@ -55,6 +58,7 @@ class App extends Component {
 		this.updateState(newBooks)
 	}
 
+	// This function is called when the user updates a book
 	updateBook = (values, book) => {
 
 		const { title, author } = values
@@ -78,12 +82,15 @@ class App extends Component {
 		window.alert('Book updated')
 	}
 
+	// This function delete a book
 	deleteBook = (bookId) => {
 		const filteredBooks = this.state.books.filter( _ => _.id !== bookId)
 		this.updateLocalStorage(filteredBooks)
 		this.updateState(filteredBooks)
 	}
 
+	// This function is called when the user change 
+	// a book to a new bookshelf
 	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
 		book.status = event.target.value 

@@ -33,7 +33,7 @@ body {
 
 .my-reads-header {
   height: 100px;
-  background-color: #3232a2;
+  background-color: #a06128;
   margin: 0;
   padding-top: 50px;
   text-transform: uppercase;
@@ -140,7 +140,7 @@ body {
   position: absolute;
   transform: translate(40px, -180px);
   color: rgba(255, 255, 255, 0);
-  background: #3232a2;
+  background: #a06128;
   background-image: url('./icons/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -213,7 +213,7 @@ h3 {
 
 footer {
   font-size: 12px;
-  background-color: #3232a2;
+  background-color: #a06128;
   color: #fff;
   padding: 1px;
 }
