@@ -4,6 +4,7 @@ import * as BooksAPI from './utils/BooksAPI';
 import BooksSearch from './BooksSearch';
 import Bookcase from './Bookcase';
 import './App.css';
+import RegisterBook from './RegisterBook';
 
 class App extends Component {
 
@@ -29,6 +30,22 @@ class App extends Component {
 		})
 	
 	
+	}
+
+	registerBook = ( title, author, cover) => {
+		const book = {
+			id: this.state.length + 1,
+			title: title, 
+			authors: [author],
+			imageLinks: {
+				thumbnail: cover
+			} 
+		}
+
+		localStorage.setItem('myread', JSON.stringify(this.state.books.concat([book])))
+		this.setState( {
+			books: JSON.parse(localStorage.getItem('myReads'))
+		})
 	}
 
 	onChangeBookcase = (event, book) => {
@@ -81,6 +98,10 @@ class App extends Component {
    				/>
 		    )}/>
 
+		    <Route exact path='/register' render={ () => (
+		    	<RegisterBook />
+		    	)}
+		    />
 		    
 		  </div>
 		)
