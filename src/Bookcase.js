@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import sortBy from 'sort-by';
 
 const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 
-	console.log(title)
-
 	const bookcaseBooks = title ? books.filter( _ => _.status === title) : books
+	bookcaseBooks.sort(sortBy('title'))
 
 	return (		
 
@@ -14,7 +14,7 @@ const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 			{ bookcaseBooks.map( (book) => (
 				<li 
 					key={book.id}
-					className="bookcase-list-item">
+					className="bookcase-list-item"
 				>
 					<img 
 						src={book.imageLinks.thumbnail}
