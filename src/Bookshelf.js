@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import sortBy from 'sort-by';
 
-const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
+const Bookshelf = ( { books, title = '', onChangeBookshelf} ) => {
 
-	const bookcaseBooks = title ? books.filter( _ => _.status === title) : books
-	bookcaseBooks.sort(sortBy('title'))
+	const bookshelfBooks = title ? books.filter( _ => _.status === title) : books
+	bookshelfBooks.sort(sortBy('title'))
 
 	return (		
 
-		<div className="bookcase-content">
+		<div className="bookshelf-content">
 			<h3> {title} </h3>
-			<ul className="bookcase-list">
-			{ bookcaseBooks.map( (book) => (
+			<ul className="bookshelf-list">
+			{ bookshelfBooks.map( (book) => (
 				<li 
 					key={book.id}
-					className="bookcase-list-item"
+					className="bookshelf-list-item"
 				>
 					<img 
 						src={book.imageLinks.thumbnail}
@@ -27,8 +27,8 @@ const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 
 					<select 
 						defaultValue={book.status} 
-						className="bookcase-control"
-						onChange={ (event) => onChangeBookcase(event, book) }
+						className="bookshelf-control"
+						onChange={ (event) => onChangeBookshelf(event, book) }
 					>
 						<option value='None' > None </option>
 						<option value='Currently Reading' > Currently Reading </option>
@@ -44,4 +44,4 @@ const Bookcase = ( { books, title = '', onChangeBookcase} ) => {
 }
 
 
-export default Bookcase
+export default Bookshelf

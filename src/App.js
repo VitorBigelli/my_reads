@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route , Link } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
 import BooksSearch from './BooksSearch';
-import Bookcase from './Bookcase';
+import Bookshelf from './Bookshelf';
 import './App.css';
 import RegisterBook from './RegisterBook';
 import ManageBooks from './ManageBooks';
@@ -84,7 +84,7 @@ class App extends Component {
 		this.updateState(filteredBooks)
 	}
 
-	onChangeBookcase = (event, book) => {
+	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
 		book.status = event.target.value 
 		console.log(book.id)
@@ -98,7 +98,7 @@ class App extends Component {
 	render() {
 		const { books } = this.state
 
-		const bookcases = [
+		const bookshelfs = [
 			{ title: 'Currently Reading', books }, 
 			{ title: 'Want to Read', books }, 
 			{ title: 'Read', books }
@@ -108,19 +108,19 @@ class App extends Component {
 		  <div className="App">
 		    
 		    <Route exact path='/' render={ () => (
-		    	<div className='bookcases'>
+		    	<div className='bookshelfs'>
 	
 		    		<Link to='/search' className='books-search-link' />
 		    		<Link to='/manage' className='books-manage' />
 	
 		    		<h2 className='my-reads-header'> My reads </h2>
 
-		    		{ bookcases.map( bookcase => (
-		    			<Bookcase
-		    				key={bookcase.title} 
-		    				title={bookcase.title}
-		    				books={bookcase.books}
-		    				onChangeBookcase={ (event, book) => this.onChangeBookcase(event, book)}
+		    		{ bookshelfs.map( bookshelf => (
+		    			<Bookshelf
+		    				key={bookshelf.title} 
+		    				title={bookshelf.title}
+		    				books={bookshelf.books}
+		    				onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book)}
 		    			/>
 		    		))}
 
@@ -137,7 +137,7 @@ class App extends Component {
 		    <Route exact path='/search' render={ () => (
    				<BooksSearch 
    					books={books} 
-   					onChangeBookcase={ (event, book) => this.onChangeBookcase(event, book) }
+   					onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book) }
    				/>
 		    )}/>
 

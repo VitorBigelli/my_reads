@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
-import Bookcase from './Bookcase';
+import Bookshelf from './Bookshelf';
 
 class BooksSearch extends Component {
 	
@@ -15,7 +15,7 @@ class BooksSearch extends Component {
 
 	render() {
 		const { query } = this.state		
-		const { books, onChangeBookcase } = this.props
+		const { books, onChangeBookshelf } = this.props
 
 		let showingBooks
 
@@ -44,9 +44,9 @@ class BooksSearch extends Component {
 						></input>
 					</div>
 
-					<Bookcase 
+					<Bookshelf 
 						books={showingBooks}
-						onChangeBookcase={ (event, book) => onChangeBookcase(event, book)} 
+						onChangeBookshelf={ (event, book) => onChangeBookshelf(event, book)} 
 					/>			
 
 			</div>

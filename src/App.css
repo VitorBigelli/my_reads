@@ -103,12 +103,12 @@
   top: 0;
 }
 
-.bookcase-list {
+.bookshelf-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.bookcase-list-item {
+.bookshelf-list-item {
   list-style: none;
   width: 200px;
   height: auto;
@@ -118,7 +118,7 @@
   font-weight: bold;
 }
 
-.bookcase-control {
+.bookshelf-control {
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -134,7 +134,7 @@
 
 }
 
-.bookcase-control option {
+.bookshelf-control option {
   background-color: #fff; 
   color: #000;
 }
