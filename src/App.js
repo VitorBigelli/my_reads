@@ -12,9 +12,11 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		BooksAPI.getAll().then( (books) => (
+		BooksAPI.getAll().then( (books) => {
+			books.map( book => book.status = 'None')
 			this.setState( { books } )
-		))
+
+		})
 	}
 
 	onChangeBookcase = (event, book) => {
@@ -32,7 +34,7 @@ class App extends Component {
 
 		const bookcases = [
 			{ title: 'Currently Reading', books }, 
-			{ title: 'Want To Read', books }, 
+			{ title: 'Want to Read', books }, 
 			{ title: 'Read', books }
 		]
 
@@ -45,10 +47,11 @@ class App extends Component {
 		    		<h2 className='my-reads-header'> My reads </h2>
 
 		    		{ bookcases.map( bookcase => (
-		    			<Bookcase 
+		    			<Bookcase
+		    				key={bookcase.title} 
 		    				title={bookcase.title}
 		    				books={bookcase.books}
-		    				onChangeBookcase={ (event) => this.onChangeBookcase(event)}
+		    				onChangeBookcase={ (event, book) => this.onChangeBookcase(event, book)}
 		    			/>
 		    		))}
 
