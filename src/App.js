@@ -111,7 +111,6 @@ class App extends Component {
 		    	<div className='bookcases'>
 	
 		    		<Link to='/search' className='books-search-link' />
-		    		<Link to='/register' className='books-register' />
 		    		<Link to='/manage' className='books-manage' />
 	
 		    		<h2 className='my-reads-header'> My reads </h2>

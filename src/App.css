@@ -85,8 +85,8 @@
   background-size: 30px;
   font-size: 0;
   position: absolute;
-  left: 5px;
-  top: 50px;
+  right: 0;
+  top: 0;
 }
 
 .books-manage {
