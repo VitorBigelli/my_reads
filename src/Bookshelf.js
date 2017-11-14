@@ -6,7 +6,7 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 
 	let bookshelfBooks = []
 
-	!books.error && (bookshelfBooks = title ? books.filter( _ => _.shelf === shelf) : books) 
+	books && !books.error && (bookshelfBooks = title ? books.filter( _ => _.shelf === shelf) : books) 
 
 	console.log(bookshelfBooks)
 	try {
