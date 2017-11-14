@@ -3,20 +3,19 @@ import ImageInput from './ImageInput';
 import serializeForm from 'form-serialize';
 import { Link } from 'react-router-dom';
 
-class ManageBooks extends Component{
+const ManageBooks = (props) => {
 	
-	handleSubmit = (event, book) => {
+	const handleSubmit = (event, book) => {
 		event.preventDefault()
 
 		const values = serializeForm(event.target, { hash: true})
 
-		if (this.props.updateBook) {
-			this.props.updateBook(values, book)
+		if (props.updateBook) {
+			props.updateBook(values, book)
 		}
 	}
 
-	render() {
-		const { books, updateBook, deleteBook, restoreDefault } = this.props
+		const { books, updateBook, deleteBook, restoreDefault } = props
 
 		return (
 			<div> 
@@ -30,7 +29,7 @@ class ManageBooks extends Component{
 						<li key={book.id} className="edit-book-form-container">
 							<form 
 								className="edit-book-form"
-								onSubmit={event => this.handleSubmit(event, book)}>
+								onSubmit={event => handleSubmit(event, book)}>
 								<img 
 									src={book.imageLinks.thumbnail}
 									className="edit-book-cover"
@@ -75,8 +74,6 @@ class ManageBooks extends Component{
 				</footer>
 			</div>
 		)
-	}
-
 }
 
 export default ManageBooks;
