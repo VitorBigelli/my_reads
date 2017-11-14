@@ -5,8 +5,10 @@ import Bookshelf from './Bookshelf';
 
 class BooksSearch extends Component {
 	
-	state = {
-		query: ''
+	constructor(props) {
+		super(props); 
+		this.state = { query: '' }
+
 	}
 
 	updateQuery = (query) => (

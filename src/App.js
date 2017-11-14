@@ -9,8 +9,9 @@ import ManageBooks from './ManageBooks';
 
 class App extends Component {
 
-	state = {
-		books: []
+	constructor(props) {
+		super(props); 
+		this.state = { books: [] }
 	}
 
 	componentDidMount() {
