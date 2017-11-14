@@ -243,3 +243,11 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.new-book-shelf {
+  width: 80%; 
+  height: 30px;
+  font-family: "Catamaran", sans-serif;
+  float: right;
+  text-align: right;
+}

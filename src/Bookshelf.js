@@ -36,7 +36,7 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 						alt='book-cover'
 					/>
 					<p className="book-title"> {book.title} </p>
-					<p className="book-author"> {book.author} </p>
+					<p className="book-author"> {book.authors ? book.authors[0] : '-'} </p>
 
 					<select 
 						defaultValue={book.status} 

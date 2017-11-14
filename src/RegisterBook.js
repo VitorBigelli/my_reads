@@ -38,6 +38,13 @@ const RegisterBook = (props) => {
 							name="author"
 							className="new-book-author"
 						/></p>
+						<p> Shelf:   
+						<select name="shelf" className="new-book-shelf">
+							<option value="currentlyReading"> Currently Reading </option>
+							<option value="wantToRead"> Want to Read</option>
+							<option value="read"> Read </option>
+						</select>
+						</p>
 						<button 
 							type="submit"
 						>Register</button>

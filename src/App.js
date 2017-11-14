@@ -44,7 +44,7 @@ class App extends Component {
 	}
 
 	// This function is called when the user register a new book
-	registerBook = ({ title, author, cover}) => {
+	registerBook = ({ title, author, cover, shelf}) => {
 
 		const book = {
 			id: this.state.books.length + 1,
@@ -52,7 +52,8 @@ class App extends Component {
 			authors: [author],
 			imageLinks: {
 				thumbnail: cover
-			} 
+			},
+			shelf: shelf 
 		}
 		const newBooks = this.state.books.concat([book]) 
 		
@@ -74,7 +75,7 @@ class App extends Component {
 			imageLinks: {
 				thumbnail: book.imageLinks.thumbnail
 			},
-			status: book.status
+			shelf: book.shelf
 		}
 		const newBooks = filteredBooks.concat( [ updatedBook ]);
 		
