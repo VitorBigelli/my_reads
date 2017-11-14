@@ -28,6 +28,7 @@ class App extends Component {
 			this.updateLocalStorage(books)
 			this.updateState(books)
 		})
+
 	}
 
 	// This function updates the 'myReads' in localStorage
@@ -113,10 +114,12 @@ class App extends Component {
 		const { books } = this.state
 
 		const bookshelfs = [
-			{ title: 'Currently Reading', books }, 
-			{ title: 'Want to Read', books }, 
-			{ title: 'Read', books }
+			{ title: 'Currently Reading', shelf: 'currentlyReading', books }, 
+			{ title: 'Want to Read', shelf: 'wantToRead', books }, 
+			{ title: 'Read', shelf: 'read', books }
 		]
+
+		console.log(books)
 
 		return (
 		  <div className="App">
@@ -134,6 +137,7 @@ class App extends Component {
 		    			<Bookshelf
 		    				key={bookshelf.title} 
 		    				title={bookshelf.title}
+		    				shelf={bookshelf.shelf}
 		    				books={bookshelf.books}
 		    				onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book)}
 		    			/>
@@ -151,7 +155,6 @@ class App extends Component {
 
 		    <Route exact path='/search' render={ () => (
    				<BooksSearch 
-   					books={books} 
    					onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book) }
    				/>
 		    )}/>

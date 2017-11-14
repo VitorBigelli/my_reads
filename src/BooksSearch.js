@@ -2,33 +2,30 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import Bookshelf from './Bookshelf';
+import * as BooksAPI from './utils/BooksAPI';
 
 class BooksSearch extends Component {
 	
 	constructor(props) {
 		super(props); 
-		this.state = { query: '' }
+		this.state = { query: '', books: [] }
 
 	}
 
-	updateQuery = (query) => (
-		this.setState( { query: query } )
-	)
+	updateQuery = (query) => {
+		BooksAPI.search(query, 5).then( (books) => {
+			this.setState( {
+				query: query, 
+				books: books
+			})
+		})
+	}
 
 	render() {
-		const { query } = this.state		
-		const { books, onChangeBookshelf } = this.props
+		const { query, books } = this.state		
+		const { onChangeBookshelf } = this.props
 
-		let showingBooks
-
-		if (query) {
-			const match = new RegExp(escapeRegExp(query), 'i')
-			showingBooks = books.filter( (book) => ( match.test(book.title) || match.test(book.authors[0])))
-		} else {
-			showingBooks = []
-		}
-
-		console.log(showingBooks)
+		console.log(books)
 
 		return (
 
@@ -47,7 +44,7 @@ class BooksSearch extends Component {
 					</div>
 
 					<Bookshelf 
-						books={showingBooks}
+						books={books}
 						onChangeBookshelf={ (event, book) => onChangeBookshelf(event, book)} 
 					/>			
 
