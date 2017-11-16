@@ -99,10 +99,11 @@ class App extends Component {
 	// a book to a new bookshelf
 	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
-		
-		BooksAPI.update(book, event.target.value).then( () => {
-			this.getAllBooks()
-		} )
+		book.shelf = event.target.value
+
+		this.setState( {
+			books: this.state.books.filter( _ => _.id !== book.id).concat([book])
+		})
 	}
 
 	search = (query) => {
