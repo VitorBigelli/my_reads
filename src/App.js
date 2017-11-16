@@ -108,8 +108,23 @@ class App extends Component {
 
 	search = (query) => {
 		BooksAPI.search(query, 20).then( (books) => {
+			
+			let result = []
+
+			if (Object.prototype.toString.call( books ) === '[object Array]') {
+				result = books.filter( book => {
+					for (var i=0; i < this.state.books.length; i++) {
+						const currentBook = this.state.books[i]
+						if (currentBook.id === book.id) {
+							book.shelf = currentBook.shelf
+						}
+						return true;
+					}
+				})
+			} 
+			
 			this.setState({
-				searchResult: books 
+				searchResult: result 
 			})
 		})
 	}

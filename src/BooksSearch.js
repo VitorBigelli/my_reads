@@ -8,7 +8,7 @@ class BooksSearch extends Component {
 	
 	constructor(props) {
 		super(props); 
-		this.state = { query: '', books: [] }
+		this.state = { query: '' }
 
 	}
 
@@ -21,8 +21,8 @@ class BooksSearch extends Component {
 	}
 
 	render() {
-		const { query, books } = this.state		
-		const { onChangeBookshelf } = this.props
+		const { query } = this.state		
+		const { onChangeBookshelf, books } = this.props
 
 		return (
 

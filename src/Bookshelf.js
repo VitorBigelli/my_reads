@@ -6,10 +6,8 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 
 	let bookshelfBooks = []
 
-	if (Object.prototype.toString.call( books ) === '[object Array]' ) {
-		bookshelfBooks = title ? books.filter( _ => _.shelf === shelf ) : books
-	}
-
+	bookshelfBooks = title ? books.filter( _ => _.shelf === shelf ) : books 
+	console.log(bookshelfBooks)
 	return (		
 
 		<div className="bookshelf-content">
@@ -42,6 +40,9 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 
 				</li>	
 			)) }
+			{ !bookshelfBooks.length && 
+				<div className="no-results"> No results found </div>
+			}
 			</ul>
 		</div>
 	)

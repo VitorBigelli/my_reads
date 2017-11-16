@@ -251,3 +251,8 @@ button:hover {
   float: right;
   text-align: right;
 }
+
+.no-results {
+  text-align: center;
+  margin: auto;
+}
