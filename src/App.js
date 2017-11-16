@@ -96,8 +96,8 @@ class App extends Component {
 	// a book to a new bookshelf
 	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
-		book.status = event.target.value 
-		console.log(book.id)
+		book.shelf = event.target.value 
+		console.log(book)
 		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
 		const newBooks = filteredBooks.concat( [book] )
 
@@ -119,8 +119,6 @@ class App extends Component {
 			{ title: 'Want to Read', shelf: 'wantToRead', books }, 
 			{ title: 'Read', shelf: 'read', books }
 		]
-
-		console.log(books)
 
 		return (
 		  <div className="App">

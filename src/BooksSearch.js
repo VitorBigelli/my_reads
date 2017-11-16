@@ -25,8 +25,6 @@ class BooksSearch extends Component {
 		const { query, books } = this.state		
 		const { onChangeBookshelf } = this.props
 
-		console.log(books)
-
 		return (
 
 			<div className='books-search'>

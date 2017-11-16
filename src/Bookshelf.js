@@ -8,7 +8,6 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 
 	books && !books.error && (bookshelfBooks = title ? books.filter( _ => _.shelf === shelf) : books) 
 
-	console.log(bookshelfBooks)
 	try {
 		if (bookshelfBooks) {
 			bookshelfBooks.sort(sortBy('title'))
@@ -28,7 +27,6 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 					key={book.id}
 					className="bookshelf-list-item"
 				>
-					{console.log(book)}
 					<img 
 						src={book.imageLinks ? book.imageLinks.thumbnail : "http://moziru.com/images/book-clipart-simple-1.png"}
 						className='book-cover-image'
@@ -44,9 +42,9 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 						onChange={ (event) => onChangeBookshelf(event, book) }
 					>
 						<option value='None' > None </option>
-						<option value='Currently Reading' > Currently Reading </option>
-						<option value='Want to Read' > Want to Read </option>
-						<option value='Read' > Read </option>
+						<option value='currentlyReading' > Currently Reading </option>
+						<option value='wantToRead' > Want to Read </option>
+						<option value='read' > Read </option>
 					</select>
 
 				</li>	
