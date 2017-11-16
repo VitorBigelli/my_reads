@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import Bookshelf from './Bookshelf';
-import { Debounce } from 'react-throttle'
 
 class BooksSearch extends Component {
 	
