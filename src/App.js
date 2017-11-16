@@ -46,7 +46,6 @@ class App extends Component {
 	}
 
 
-
 	// This function is called when the user register a new book
 	registerBook = ({ title, author, cover, shelf}) => {
 
@@ -108,8 +107,6 @@ class App extends Component {
 
 	search = (query) => {
 		BooksAPI.search(query, 40).then( (books) => {
-			console.log(query)
-			console.log(books)
 			this.setState( {
 				searchResult: books
 			})
