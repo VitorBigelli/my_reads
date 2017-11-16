@@ -48,7 +48,6 @@ class App extends Component {
 		this.getAllBooks()
 	}
 
-
 	// This function is called when the user register a new book
 	registerBook = ({ title, author, cover, shelf}) => {
 
@@ -147,7 +146,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { books, searchResult } = this.state
+		const { books, searchResult, loading } = this.state
 
 		const bookshelfs = [
 			{ title: 'Currently Reading', shelf: 'currentlyReading', books }, 
@@ -192,6 +191,7 @@ class App extends Component {
    					onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book) }
    					search={(query) => this.search(query)}
    					books={searchResult}
+   					loading={loading}
    				/>
 		    )}/>
 
