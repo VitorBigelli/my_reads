@@ -6,15 +6,8 @@ const Bookshelf = ( { books, title = '', shelf = '', onChangeBookshelf} ) => {
 
 	let bookshelfBooks = []
 
-	books && !books.error && (bookshelfBooks = title ? books.filter( _ => _.shelf === shelf) : books) 
-
-	try {
-		if (bookshelfBooks) {
-			bookshelfBooks.sort(sortBy('title'))
-		}
-	}
-	catch (bookshelfBooks) {
-		bookshelfBooks = []
+	if (Object.prototype.toString.call( books ) === '[object Array]' ) {
+		bookshelfBooks = title ? books.filter( _ => _.shelf === shelf ) : books
 	}
 
 	return (		

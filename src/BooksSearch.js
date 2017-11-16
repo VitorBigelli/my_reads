@@ -35,7 +35,7 @@ class BooksSearch extends Component {
 							<input
 								type='text'
 								value={query}
-								placeholder='Search a book'
+								placeholder='Search for a category, theme or field'
 								onChange={ (event) => {		
 									this.updateQuery(event.target.value)
 								}}

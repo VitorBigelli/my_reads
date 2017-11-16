@@ -107,9 +107,9 @@ class App extends Component {
 	}
 
 	search = (query) => {
-		BooksAPI.search(query, 40).then( (books) => {
-			this.setState( {
-				searchResult: books
+		BooksAPI.search(query, 20).then( (books) => {
+			this.setState({
+				searchResult: books 
 			})
 		})
 	}
