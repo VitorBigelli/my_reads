@@ -2,17 +2,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Running the "My Reads" app 
 
-1. Make sure you have npm latest version installed in your computer. You can do this by running 
+1. Make sure that you have [Node.js](https://nodejs.org/en/download/) and npm installed.
+2. Make sure you have npm latest version installed in your computer. You can do this by running 
 ```
 npm install npm@latest
 ```
-2. Download or clone the repository into your computer; 
-3. In your command prompt install the `create-react-app` by running: 
+3. Download or clone the repository into your computer; 
+4. In your command prompt install the `create-react-app` by running: 
 ```
 npm install -g create-react-app
 ```
 . This command will install the ```create react-app``` package globally. 
-4. Navigate to the downloaded folder (or cloned repository) and run the following command: 
+5. Navigate to the downloaded folder (or cloned repository) and run the following command: 
 ```
 npm start
 ```
