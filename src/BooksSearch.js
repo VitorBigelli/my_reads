@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import Bookshelf from './Bookshelf';
-import * as BooksAPI from './utils/BooksAPI';
+import { Debounce } from 'react-throttle'
 
 class BooksSearch extends Component {
 	
@@ -13,12 +13,11 @@ class BooksSearch extends Component {
 	}
 
 	updateQuery = (query) => {
-		BooksAPI.search(query, 5).then( (books) => {
-			this.setState( {
-				query: query, 
-				books: books
-			})
+		this.setState( {
+			query: query
 		})
+		
+		this.props.search(query)
 	}
 
 	render() {
@@ -33,12 +32,14 @@ class BooksSearch extends Component {
 						<Link to='/' className='my-reads-link'>
 							Back
 						</Link>
-						<input
-							type='text'
-							value={query}
-							placeholder='Search a book'
-							onChange={ (event) => (this.updateQuery(event.target.value))}
-						></input>
+							<input
+								type='text'
+								value={query}
+								placeholder='Search a book'
+								onChange={ (event) => {		
+									this.updateQuery(event.target.value)
+								}}
+							/>
 					</div>
 
 					<Bookshelf 

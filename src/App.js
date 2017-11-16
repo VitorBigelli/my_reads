@@ -11,24 +11,7 @@ class App extends Component {
 
 	constructor(props) {
 		super(props); 
-		this.state = { books: [] }
-	}
-
-	componentDidMount() {
-
-		const cachedBooks = localStorage.getItem('myReads');
-
-		if (cachedBooks) {
-			this.setState( { books: JSON.parse(cachedBooks) } );
-			return;
-		} 
-
-		BooksAPI.getAll().then( (books) => {
-			books.map( book => book.status = 'None')
-			this.updateLocalStorage(books)
-			this.updateState(books)
-		})
-
+		this.state = { books: [], searchResult: [] }
 	}
 
 	// This function updates the 'myReads' in localStorage
@@ -42,6 +25,27 @@ class App extends Component {
 		this.setState( { books: newBooks } )
 		return;
 	}
+
+	getAllBooks() {
+		BooksAPI.getAll().then( (books) => {
+			this.updateLocalStorage(books)
+			this.updateState(books)
+		})
+	}
+
+	componentDidMount() {
+
+		const cachedBooks = localStorage.getItem('myReads');
+
+		if (cachedBooks) {
+			this.setState( { books: JSON.parse(cachedBooks) } );
+			return;
+		} 
+
+		this.getAllBooks()
+	}
+
+
 
 	// This function is called when the user register a new book
 	registerBook = ({ title, author, cover, shelf}) => {
@@ -96,13 +100,20 @@ class App extends Component {
 	// a book to a new bookshelf
 	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
-		book.shelf = event.target.value 
+		
+		BooksAPI.update(book, event.target.value).then( () => {
+			this.getAllBooks()
+		} )
+	}
 
-		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id))
-		const newBooks = filteredBooks.concat( [book] )
-
-		this.updateLocalStorage(newBooks)
-		this.updateState(newBooks)
+	search = (query) => {
+		BooksAPI.search(query, 40).then( (books) => {
+			console.log(query)
+			console.log(books)
+			this.setState( {
+				searchResult: books
+			})
+		})
 	}
 
 	// Clear the localStorage
@@ -112,7 +123,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { books } = this.state
+		const { books, searchResult } = this.state
 
 		const bookshelfs = [
 			{ title: 'Currently Reading', shelf: 'currentlyReading', books }, 
@@ -155,6 +166,8 @@ class App extends Component {
 		    <Route exact path='/search' render={ () => (
    				<BooksSearch 
    					onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book) }
+   					search={(query) => this.search(query)}
+   					books={searchResult}
    				/>
 		    )}/>
 
