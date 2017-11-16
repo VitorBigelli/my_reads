@@ -11,7 +11,7 @@ class App extends Component {
 
 	constructor(props) {
 		super(props); 
-		this.state = { books: [], searchResult: [] }
+		this.state = { books: [], searchResult: [], loading: false }
 	}
 
 	// This function updates the 'myReads' in localStorage
@@ -38,7 +38,10 @@ class App extends Component {
 		const cachedBooks = localStorage.getItem('myReads');
 
 		if (cachedBooks) {
-			this.setState( { books: JSON.parse(cachedBooks) } );
+			this.setState( { 
+				books: JSON.parse(cachedBooks), 
+				searchResult: [] 
+			});
 			return;
 		} 
 
@@ -101,12 +104,19 @@ class App extends Component {
 		event.preventDefault() 
 		book.shelf = event.target.value
 
+		const newBooks = this.state.books.filter( _ => _.id !== book.id).concat([book])
 		this.setState( {
-			books: this.state.books.filter( _ => _.id !== book.id).concat([book])
+			books: newBooks
 		})
+
+		this.updateLocalStorage(newBooks)
 	}
 
 	search = (query) => {
+		this.setState({
+			loading: true
+		})
+
 		BooksAPI.search(query, 20).then( (books) => {
 			
 			let result = []
@@ -122,9 +132,10 @@ class App extends Component {
 					}
 				})
 			} 
-			
+
 			this.setState({
-				searchResult: result 
+				searchResult: result,
+				loading: false 
 			})
 		})
 	}

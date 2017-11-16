@@ -22,7 +22,7 @@ class BooksSearch extends Component {
 
 	render() {
 		const { query } = this.state		
-		const { onChangeBookshelf, books } = this.props
+		const { onChangeBookshelf, books, loading } = this.props
 
 		return (
 
@@ -43,6 +43,8 @@ class BooksSearch extends Component {
 					</div>
 
 					<Bookshelf 
+						loading={loading}
+						query={query}
 						books={books}
 						onChangeBookshelf={ (event, book) => onChangeBookshelf(event, book)} 
 					/>			
