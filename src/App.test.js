@@ -7,10 +7,4 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
 });
 
-it('get all books', () => {
-	App.getAllBooks();
-});
 
-it('update a book', () => {
-	App.updateBook({title, author})
-});
