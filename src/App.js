@@ -105,13 +105,18 @@ class App extends Component {
 	// a book to a new bookshelf
 	onChangeBookshelf = (event, book) => {
 		event.preventDefault() 
+		
+		let newBooks = this.state.books.filter( _ => _.id !== book.id)
+
 		book.shelf = event.target.value
 
-		const newBooks = this.state.books.filter( _ => _.id !== book.id).concat([book])
-		this.setState( {
-			books: newBooks
-		})
+		if (book.shelf == 'none') {
+			this.deleteBook(book.id)
+		} else {
+			newBooks = newBooks.concat([book])
+		}
 
+		this.updateState(newBooks)
 		this.updateLocalStorage(newBooks)
 	}
 
@@ -206,10 +211,14 @@ class App extends Component {
 		    	)}
 		    />
 
-		    <Route exact path='/manage' render={ () => (
+		    <Route exact path='/manage' render={ ({history}) => (
 		    	<ManageBooks 
 		    		books={books}
-		    		updateBook={ (values, book) => this.updateBook(values, book) }
+		    		updateBook={ (values, book) => {
+		    				this.updateBook(values, book)
+		    				history.push('/')
+		    				}
+		    		}
 		    		deleteBook={ (book) => this.deleteBook(book)}
 		    		restoreDefault={this.restoreDefault}
 		    	/>

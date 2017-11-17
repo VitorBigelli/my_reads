@@ -42,7 +42,7 @@ const Bookshelf = ( { loading, query = '', books, title = '', shelf = '', onChan
 						className="bookshelf-control"
 						onChange={ (event) => onChangeBookshelf(event, book) }
 					>
-						<option value='None' > None </option>
+						<option value='none' > None </option>
 						<option value='currentlyReading' > Currently Reading </option>
 						<option value='wantToRead' > Want to Read </option>
 						<option value='read' > Read </option>
