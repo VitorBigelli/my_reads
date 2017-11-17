@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ImageInput from './ImageInput';
 import serializeForm from 'form-serialize';
 import { Link } from 'react-router-dom';
 
-const RegisterBook = (props) => {
+const RegisterBook = ({onSubmit}) => {
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
 		const values = serializeForm(e.target, {hash: true})
 
-		if (props.onSubmit) {
-			props.onSubmit(values)
+		if (onSubmit) {
+			onSubmit(values)
 		}
 	}
 

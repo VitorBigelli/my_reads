@@ -7,6 +7,7 @@ import './App.css';
 import RegisterBook from './RegisterBook';
 import ManageBooks from './ManageBooks';
 
+
 class App extends Component {
 
 	constructor(props) {
@@ -48,6 +49,13 @@ class App extends Component {
 		this.getAllBooks()
 	}
 
+	addBook = (book, books = this.state.books) => {
+		const newBooks = books.concat([book])
+
+		this.updateLocalStorage(newBooks)
+		this.updateState(newBooks)
+	}
+
 	// This function is called when the user register a new book
 	registerBook = ({ title, author, cover, shelf}) => {
 
@@ -60,10 +68,8 @@ class App extends Component {
 			},
 			shelf: shelf 
 		}
-		const newBooks = this.state.books.concat([book]) 
 		
-		this.updateLocalStorage(newBooks)
-		this.updateState(newBooks)
+		this.addBook(book)
 	}
 
 	// This function is called when the user updates a book
@@ -82,10 +88,8 @@ class App extends Component {
 			},
 			shelf: book.shelf
 		}
-		const newBooks = filteredBooks.concat( [ updatedBook ]);
 		
-		this.updateLocalStorage(newBooks)
-		this.updateState(newBooks)
+		this.addBook(updatedBook, filteredBooks)
 
 		window.alert('Book updated')
 	}
@@ -122,13 +126,12 @@ class App extends Component {
 
 			if (Object.prototype.toString.call( books ) === '[object Array]') {
 				result = books.filter( book => {
-					for (var i=0; i < this.state.books.length; i++) {
-						const currentBook = this.state.books[i]
-						if (currentBook.id === book.id) {
-							book.shelf = currentBook.shelf
+					this.state.books.map( _ => {
+						if (_.id === book.id) {
+							book.shelf = _.shelf
 						}
-						return true;
-					}
+					})
+					return true;
 				})
 			} 
 

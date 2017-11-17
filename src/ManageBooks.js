@@ -1,7 +1,7 @@
-import React, { Component } from 'react'; 
-import ImageInput from './ImageInput';
+import React from 'react'; 
 import serializeForm from 'form-serialize';
 import { Link } from 'react-router-dom';
+import sortBy from 'sort-by';
 
 const ManageBooks = (props) => {
 	
@@ -13,9 +13,9 @@ const ManageBooks = (props) => {
 		if (props.updateBook) {
 			props.updateBook(values, book)
 		}
-	}
+		}
 
-		const { books, updateBook, deleteBook, restoreDefault } = props
+		const { books, deleteBook, restoreDefault } = props
 
 		return (
 			<div> 
@@ -25,7 +25,7 @@ const ManageBooks = (props) => {
 	    		<Link to='/register' className='books-register'/>
 
 				<ul className="manage-books-list">
-					{ books.map( (book) => (
+					{ books.sort(sortBy('title')).map( (book) => (
 						<li key={book.id} className="edit-book-form-container">
 							<form 
 								className="edit-book-form"
@@ -35,6 +35,7 @@ const ManageBooks = (props) => {
 									className="edit-book-cover"
 									name="currentCover"
 									height={100}
+									alt='book-cover'
 								/>
 								<p> Title: <input 
 									type="text"
@@ -43,12 +44,16 @@ const ManageBooks = (props) => {
 									className="edit-book-title"
 								/></p>
 								
-								<p> Author: <input 
-									type="text"
-									defaultValue={book.authors[0]}
-									name="author"
-									className="edit-book-title"
-								/> </p>
+								<p> Author(s): 
+								{ book.authors && book.authors.map( author => (
+									<input 
+										type="text"
+										defaultValue={author}
+										name="author"
+										className="edit-book-title"
+									/> 
+								))}
+								</p>
 								<div className="manage-options">
 									<button 
 										type="submit"

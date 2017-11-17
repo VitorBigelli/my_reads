@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import escapeRegExp from 'escape-string-regexp';
 import Bookshelf from './Bookshelf';
 
 class BooksSearch extends Component {
@@ -15,6 +14,14 @@ class BooksSearch extends Component {
 		this.setState( {
 			query: query
 		})
+
+		if (this.timeout) {
+			clearTimeout(this.timeout);
+		}
+
+		this.timeout= setTimeout( () => {
+			this.props.search(query)
+		}, 1000);
 		
 		this.props.search(query)
 	}
