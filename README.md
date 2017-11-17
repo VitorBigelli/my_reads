@@ -8,14 +8,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 npm install npm@latest
 ```
 3. Download or clone the repository into your computer; 
-4. In your command prompt install the `create-react-app` by running: 
+4. Navigate to the downloaded folder (or cloned repository) and run the following commands: 
 ```
-npm install -g create-react-app
+yarn install
 ```
-. This command will install the ```create react-app``` package globally. 
-5. Navigate to the downloaded folder (or cloned repository) and run the following command: 
+and 
 ```
-npm start
+yarn start
 ```
 
 Your browser will open the `localhost:3000` address and the application will be ready to be used.

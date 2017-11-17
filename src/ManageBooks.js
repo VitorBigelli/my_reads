@@ -45,14 +45,14 @@ const ManageBooks = (props) => {
 								/></p>
 								
 								<p> Author(s): 
-								{ book.authors && book.authors.map( author => (
+								{ book.authors && 
 									<input 
 										type="text"
-										defaultValue={author}
-										name="author"
+										defaultValue={book.authors.join('; ')}
+										name='authors'
 										className="edit-book-title"
 									/> 
-								))}
+								}
 								</p>
 								<div className="manage-options">
 									<button 

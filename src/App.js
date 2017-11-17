@@ -75,14 +75,12 @@ class App extends Component {
 	// This function is called when the user updates a book
 	updateBook = (values, book) => {
 
-		const { title, author } = values
-
 		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id) )
 
 		const updatedBook = {
 			id: book.id,
-			title: title, 
-			authors: [author],
+			title: values.title, 
+			authors: values.authors.split('; '),
 			imageLinks: {
 				thumbnail: book.imageLinks.thumbnail
 			},
@@ -110,7 +108,7 @@ class App extends Component {
 
 		book.shelf = event.target.value
 
-		if (book.shelf == 'none') {
+		if (book.shelf === 'none') {
 			this.deleteBook(book.id)
 		} else {
 			newBooks = newBooks.concat([book])
