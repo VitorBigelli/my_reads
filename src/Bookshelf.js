@@ -59,11 +59,11 @@ const Bookshelf = ( { loading, query = '', books, title = '', shelf = '', onChan
 
 Bookshelf.propTypes = {
 	books: PropTypes.array,
-	loading: PropTypes.boolean,
+	loading: PropTypes.bool,
 	query: PropTypes.string,
 	title: PropTypes.string,
 	shelf: PropTypes.string, 
-	onChangeBookshelf: PropTypes.function
+	onChangeBookshelf: PropTypes.func
 
 }
 
