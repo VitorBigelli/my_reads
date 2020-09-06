@@ -31,15 +31,41 @@ body {
   to { transform: rotate(360deg); }
 }
 
+.bookshelfs {
+  max-width: 900px;
+  margin: auto;
+}
+
 .my-reads-header {
   height: 100px;
-  background-color: #a06128;
   margin: 0;
   padding-top: 50px;
-  text-transform: uppercase;
-  color: #fff;
+  color: #333;
   font-size: 40px;
 }
+
+.reading_image_1,
+.reading_image_2, 
+.reading_image_3 {
+  width: 300px;
+  position: absolute;
+}
+
+.reading_image_1 {
+  left: 10px;
+  top: 10px;
+}
+
+.reading_image_2 {
+  right: 10px;
+  bottom: calc(50% - 150px);
+}
+
+.reading_image_3 {
+  left: 10px;
+  bottom: 10px;
+}
+
 
 .my-reads-header-bg {
     position: absolute;

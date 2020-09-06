@@ -7,6 +7,10 @@ import './App.css';
 import RegisterBook from './components/RegisterBook';
 import ManageBooks from './components/ManageBooks';
 
+import reading_image_1 from './assets/reading_1.jpeg'
+import reading_image_2 from './assets/reading_2.jpeg'
+import reading_image_3 from './assets/reading_3.jpeg'
+
 
 class App extends Component {
 
@@ -162,15 +166,17 @@ class App extends Component {
 
 		return (
 		  <div className="App">
+			<img src={reading_image_1} alt='...' className='reading_image_1' />
+			<img src={reading_image_2} alt='...' className='reading_image_2' />
+			<img src={reading_image_3} alt='...' className='reading_image_3' />
 		    
 		    <Route exact path='/' render={ () => (
 		    	<div className='bookshelfs'>
 	
 		    		<Link to='/search' className='books-search-link' />
 		    		<Link to='/manage' className='books-manage' />
-	
-		    		<div className='my-reads-header-bg'></div>
-		    		<h2 className='my-reads-header'> My reads </h2>
+
+		    		<h2 className='my-reads-header'> Vitor Bigelli's reads </h2>
 
 		    		{ bookshelfs.map( bookshelf => (
 		    			<Bookshelf
