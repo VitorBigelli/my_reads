@@ -135,7 +135,7 @@ body {
   background-repeat: no-repeat;
   background-size: 40px;
   font-size: 0;
-  position: absolute;
+  position: fixed;
   right: 10px;
   background: transparent !important;
   border: none;
@@ -253,7 +253,11 @@ body {
 
 
 .bookshelf-item img   {
-  height: 120px;
+  width: 100px;
+}
+
+.bookshelf-item h5 {
+  width: calc(100% - 100px);
 }
 
 .bookshelf-item {
@@ -290,6 +294,14 @@ body {
   position: absolute;
   right: 0px;
   top: 0px;
+  background: transparent;
+  border: none;
+}
+
+.link-button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
   background: transparent;
   border: none;
 }

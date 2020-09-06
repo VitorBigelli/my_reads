@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ReactTinyLink } from 'react-tiny-link'
-import { InputGroup, Modal, Button, FormControl, Form, Accordion } from 'react-bootstrap';
+import { InputGroup, Modal, Button, FormControl, Form } from 'react-bootstrap';
 import { validURL } from '../utils/helpers'
-import { useAccordionToggle } from 'react-bootstrap/Accordion'
 
 const RegisterBook = ({ onSubmit, onClose }) => {
 
@@ -27,7 +26,7 @@ const RegisterBook = ({ onSubmit, onClose }) => {
 		if (validURL(link) && !response) {
 			toggleLoading(true)
 		} 
-	})
+	}, [link, response])
 
 	return (
 		<>
@@ -41,7 +40,7 @@ const RegisterBook = ({ onSubmit, onClose }) => {
 				</InputGroup>
 				{ response && 
 					<div className='d-flex flex-column justify-content-center align-items-center book-preview'>
-						<img src={response.image[0]} className='' /> 
+						<img src={response.image[0]} className='' alt='book-cover' /> 
 						<InputGroup className='d-flex'>
 							<Form.Control className='title-input' placeholder='' value={title} onChange={ (e) => updateTitle(e.target.value) }/>
 						</InputGroup>				

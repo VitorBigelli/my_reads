@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { books } from './data/books'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,7 +20,8 @@ import RegisterBook from './components/RegisterBook';
 
 import {
 	TiDocumentAdd,
-	TiDelete
+	TiDelete,
+	TiLink
 } from 'react-icons/ti'
 
 const bookshelfs = [
@@ -163,10 +164,11 @@ class App extends Component {
 																	<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
 																		<TiDelete  size={20} fill='#ac3333'/>
 																	</button>
-																	<img src={item.image[0]} />
-																	<div className='d-flex flex-column justify-text-center'>
-																		<h5> { item.title } </h5>
-																	</div>
+																	<a href={item.url} className='link-button' target='_black' >
+																		<TiLink  size={20} fill='purple'/>
+																	</a>
+																	<img src={item.image[0]} alt='book-cover' />
+																	<h5> { item.title } </h5>
 																</div>
 															)}
 														</Draggable>
