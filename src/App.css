@@ -279,6 +279,7 @@ body {
   text-overflow: ellipsis;
   padding: 10px;
   overflow: hidden;
+  font-weight: bold;
 }
 
 .react_tinylink_card {

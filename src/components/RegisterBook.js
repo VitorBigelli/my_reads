@@ -6,7 +6,7 @@ import { useAccordionToggle } from 'react-bootstrap/Accordion'
 
 const RegisterBook = ({ onSubmit, onClose }) => {
 
-	const [ link, updateLink ] = useState('https://www.amazon.com/Sapiens-breve-hist%C3%B3ria-humanidade-Portuguese-ebook/dp/B00UZLPCGQ')
+	const [ link, updateLink ] = useState('')
 	const [ response, updateResponse ] = useState(null) 
 	const [ title, updateTitle ] = useState('')
 	const [ loading, toggleLoading ] = useState(false)

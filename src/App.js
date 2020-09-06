@@ -158,7 +158,7 @@ class App extends Component {
 																	ref={provided.innerRef}
 																	{...provided.draggableProps}
 																	{...provided.dragHandleProps}
-																	className='d-flex bookshelf-item'
+																	className='d-flex bookshelf-item align-items-center'
 																>
 																	<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
 																		<TiDelete  size={20} fill='#ac3333'/>
