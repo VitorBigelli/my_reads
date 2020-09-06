@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import { Route , Link } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
 import BooksSearch from './components/BooksSearch';
-import Bookshelf from './components/Bookshelf';
+import { books } from './data/books'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
 import RegisterBook from './components/RegisterBook';
 import ManageBooks from './components/ManageBooks';
+
+import { 
+	DragDropContext,
+	Draggable, 
+	Droppable
+} from 'react-beautiful-dnd'
 
 import reading_image_1 from './assets/reading_1.jpeg'
 import reading_image_2 from './assets/reading_2.jpeg'
 import reading_image_3 from './assets/reading_3.jpeg'
+import { Container, Card, Row, Col } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -156,13 +164,15 @@ class App extends Component {
 	}
 
 	render() {
-		const { books, searchResult, loading } = this.state
+		const { searchResult, loading } = this.state
 
 		const bookshelfs = [
-			{ title: 'Currently Reading', shelf: 'currentlyReading', books }, 
-			{ title: 'Want to Read', shelf: 'wantToRead', books }, 
-			{ title: 'Read', shelf: 'read', books }
+			{ title: 'Want to Read', shelf: 'listed' }, 
+			{ title: 'Currently Reading', shelf: 'reading' }, 
+			{ title: 'Read', shelf: 'read' }
 		]
+
+		console.log(books)
 
 		return (
 		  <div className="App">
@@ -171,31 +181,52 @@ class App extends Component {
 			<img src={reading_image_3} alt='...' className='reading_image_3' />
 		    
 		    <Route exact path='/' render={ () => (
-		    	<div className='bookshelfs'>
+		    	<Container className='bookshelfs'>
 	
 		    		<Link to='/search' className='books-search-link' />
 		    		<Link to='/manage' className='books-manage' />
 
 		    		<h2 className='my-reads-header'> Vitor Bigelli's reads </h2>
 
-		    		{ bookshelfs.map( bookshelf => (
-		    			<Bookshelf
-		    				key={bookshelf.title} 
-		    				title={bookshelf.title}
-		    				shelf={bookshelf.shelf}
-		    				books={bookshelf.books}
-		    				onChangeBookshelf={ (event, book) => this.onChangeBookshelf(event, book)}
-		    			/>
-		    		))}
-
-	    		
-		    		<footer>
-		    		<p> "Add book" icon made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a> </p>
-		    		<p> "Gears" icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a> </p>
-		    		</footer>
-
-
-		    	</div>
+					<div className='d-flex flex-row align-items-start justify-content-start'>
+						<DragDropContext>
+							{ bookshelfs.map( (bookshelf, index) => (
+								<Droppable droppableId={`droppable droppable_${index}`} key={index} > 
+									{(provided, snapshot) => (
+										<div	
+											ref={provided.innerRef}
+											className={`droppable droppable_${index}`}
+											>
+											<h5> { bookshelf.title } </h5>
+											{ books.map((item, index) => (
+												item.status === bookshelf.shelf && <Draggable
+													key={item.id}
+													draggableId={item.id}
+													index={index}>
+													{(provided, snapshot) => (
+														<div
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															className='d-flex flex-row bookshelf-item'
+														>
+															<img src={item.cover_url} />
+															<div className='d-flex flex-column justify-content-center book-info'>
+																<h5> { item.title } </h5>
+																<p> { item.author } </p>
+															</div>	
+														</div>
+													)}
+												</Draggable>
+											))}
+											{provided.placeholder}
+										</div>
+									)}
+								</Droppable>
+							))}
+						</DragDropContext>
+					</div>
+		    	</Container>
 		    )}/>
 
 		    <Route exact path='/search' render={ () => (

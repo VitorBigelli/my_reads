@@ -48,7 +48,8 @@ body {
 .reading_image_2, 
 .reading_image_3 {
   width: 300px;
-  position: absolute;
+  position: fixed;
+  z-index: -1;
 }
 
 .reading_image_1 {
@@ -224,6 +225,50 @@ body {
   margin: auto;
 }
 
+
+.droppable {
+  max-width: 300px;
+  width: 30%;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.16);
+  border-radius: 10px;
+}
+
+.droppable_0 {
+  color: rebeccapurple;
+}
+
+.droppable_1 {
+  color: tomato;
+}
+
+.droppable_2  {
+  color: forestgreen;
+}
+
+.droppable > h5 {
+  padding: 10px;
+  font-weight: bold;
+}
+
+
+.bookshelf-item img   {
+  width: 100px;
+}
+
+.bookshelf-item {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  color: #333;
+}
+
+.book-info {
+  padding: 10px;
+}
+
 .manage-books-list {
   display: flex;
   flex-wrap: wrap;
@@ -233,18 +278,6 @@ h3 {
   text-align: left;
   border-bottom: 2px #666;
   padding-left: 15px;
-}
-
-footer {
-  font-size: 12px;
-  background-color: #a06128;
-  color: #fff; 
-  bottom: 0;
-  width: 100%;
-}
-
-footer a {
-  color: #eee;
 }
 
 .manage-books-footer {
