@@ -140,36 +140,43 @@ class App extends Component {
 						<div className='d-flex flex-row align-items-start justify-content-start'>
 							<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
 								{bookshelfs.map((bookshelf, index) => (
-									<Droppable droppableId={bookshelf.shelf} key={index} >
+									<Droppable droppableId={bookshelf.shelf} key={index} className='droppable'>
 										{(provided, snapshot) => (
 											<div
 												ref={provided.innerRef}
 												className={`droppable droppable_${index}`}
 											>
-												<h5> {bookshelf.title} </h5>
-												{this.state[bookshelf.shelf].map((item, index) => (
-													<Draggable
-														key={item.id ? item.id : item.title}
-														draggableId={item.id ? item.id : item.title}
-														index={index}>
-														{(provided, snapshot) => (
-															<div
-																ref={provided.innerRef}
-																{...provided.draggableProps}
-																{...provided.dragHandleProps}
-																className='d-flex bookshelf-item'
-															>
-																<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
-																	<TiDelete  size={20} fill='#ac3333'/>
-																</button>
-																<img src={item.image[0]} />
-																<div className='d-flex flex-column justify-text-center'>
-																	<h5> { item.title } </h5>
+												<h5> {bookshelf.title} ({this.state[bookshelf.shelf].length }) </h5> 
+												<div className='scroll'>
+													{this.state[bookshelf.shelf].map((item, index) => (
+														<Draggable
+															key={item.id ? item.id : item.title}
+															draggableId={item.id ? item.id : item.title}
+															index={index}>
+															{(provided, snapshot) => (
+																<div
+																	ref={provided.innerRef}
+																	{...provided.draggableProps}
+																	{...provided.dragHandleProps}
+																	className='d-flex bookshelf-item'
+																>
+																	<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
+																		<TiDelete  size={20} fill='#ac3333'/>
+																	</button>
+																	<img src={item.image[0]} />
+																	<div className='d-flex flex-column justify-text-center'>
+																		<h5> { 
+																			item.title.includes('-') ? 
+																			item.title.split('-')[0] : 
+																			item.title.includes('_') ? 
+																			item.title.split('_')[0] :
+																			item.title } </h5>
+																	</div>
 																</div>
-															</div>
-														)}
-													</Draggable>
-												))}
+															)}
+														</Draggable>
+													))}
+												</div>
 												{provided.placeholder}
 											</div>
 										)}
