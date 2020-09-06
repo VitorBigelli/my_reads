@@ -1,0 +1,27 @@
+{
+    "0": {
+        "title": "How to create a mind", 
+        "author": "Ray Kurzweil",
+        "status": "read"
+    }, 
+    "1": {
+        "title": "The innovators",
+        "author": "Walter Isaacson",
+        "status": "read"
+    },
+    "2": {
+        "title": "The Drunkard's Walk",
+        "author": "Leonard Mlodinow",
+        "status": "read"
+    },
+    "3": {
+        "title": "The Ride of a Lifetime",
+        "author": "Robert Iger",
+        "status": "reading"
+    },
+    "4": {
+        "title": "Crime e Castigo", 
+        "author": "Fyodor Dostoevsky",
+        "status": "reading"
+    }
+}

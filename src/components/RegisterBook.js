@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageInput from './ImageInput';
+import ImageInput from '../ImageInput';
 import serializeForm from 'form-serialize';
 import { Link } from 'react-router-dom';
 
