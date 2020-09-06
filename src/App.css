@@ -265,11 +265,24 @@ body {
   position: relative;
 }
 
+.book-preview {
+  margin: 10px;
+  text-align: center;
+}
+
+.book-preview img {
+  width: 100px;
+}
+
 .bookshelf-item h5 {
   font-size: 15px;
   text-overflow: ellipsis;
   padding: 10px;
   overflow: hidden;
+}
+
+.react_tinylink_card {
+  display: none !important;
 }
 
 .delete-button {

@@ -165,12 +165,7 @@ class App extends Component {
 																	</button>
 																	<img src={item.image[0]} />
 																	<div className='d-flex flex-column justify-text-center'>
-																		<h5> { 
-																			item.title.includes('-') ? 
-																			item.title.split('-')[0] : 
-																			item.title.includes('_') ? 
-																			item.title.split('_')[0] :
-																			item.title } </h5>
+																		<h5> { item.title } </h5>
 																	</div>
 																</div>
 															)}
@@ -196,6 +191,7 @@ class App extends Component {
 						onClose={() => this.setState({ showModal: false })}
 					/>
 				</Modal>
+
 
 			</div>
 		)
