@@ -1,5 +1,6 @@
 body {
   font-family: 'Catamaran', sans-serif;
+  background: #333 !important;
 }
 
 .App {
@@ -12,7 +13,6 @@ body {
 }
 
 .App-header {
-  background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
@@ -45,8 +45,7 @@ body {
 }
 
 .reading_image_1,
-.reading_image_2, 
-.reading_image_3 {
+.reading_image_2 {
   width: 300px;
   position: fixed;
   z-index: -1;
@@ -54,19 +53,13 @@ body {
 
 .reading_image_1 {
   left: 10px;
-  top: 10px;
+  bottom: 10px;
 }
 
 .reading_image_2 {
   right: 10px;
-  bottom: calc(50% - 150px);
-}
-
-.reading_image_3 {
-  left: 10px;
   bottom: 10px;
 }
-
 
 .my-reads-header-bg {
     position: absolute;
