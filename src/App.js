@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import * as BooksAPI from './utils/BooksAPI';
 import { books } from './data/books'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
@@ -11,19 +10,18 @@ import {
 	Droppable
 } from 'react-beautiful-dnd'
 
-import { ReactTinyLink } from 'react-tiny-link'
 
 import reading_image_1 from './assets/reading_image_2.png'
 import reading_image_2 from './assets/reading_image_1.png'
-import { Container, Card, Row, Col, Modal, Button } from 'react-bootstrap';
-import header_image from './assets/header.png'
+import { Container, Modal } from 'react-bootstrap';
 
 import { move, reorder, ID } from './utils/helpers'
 import RegisterBook from './components/RegisterBook';
 
 import {
-	FaPlus
-} from 'react-icons/fa'
+	TiDocumentAdd,
+	TiDelete
+} from 'react-icons/ti'
 
 const bookshelfs = [
 	{ title: 'Want to Read', shelf: 'want_to_read' },
@@ -60,10 +58,11 @@ class App extends Component {
 		});
 	}
 
-	addBook = (url) => {
+	addBook = (data) => { 
+
 		const newBooks = this.state["want_to_read"].concat([{
 			"id": ID(),
-			"amazon_link": url
+			...data 
 		}])
 
 		this.setState({
@@ -73,10 +72,12 @@ class App extends Component {
 	}
 
 	// This function delete a book
-	deleteBook = (bookId) => {
-		const filteredBooks = this.state.books.filter(_ => _.id !== bookId)
-		this.updateLocalStorage(filteredBooks)
-		this.updateState(filteredBooks)
+	deleteBook = (status, bookIndex) => {
+		const filteredBooks = this.state[status].filter( (_, index) => index !== bookIndex)
+		
+		this.setState({
+			[status]: filteredBooks, 
+		}, (state) => this.updateLocalStorage({ ...this.state }))
 	}
 
 	onDragEnd(result) {
@@ -94,10 +95,10 @@ class App extends Component {
 					destination.index
 				)
 
-
 				this.setState({
 					[source.droppableId]: items
-				})
+				}, (state) => this.updateLocalStorage({ ...this.state })) 
+				
 
 			} else {
 
@@ -111,7 +112,7 @@ class App extends Component {
 				this.setState({
 					[source.droppableId]: result[source.droppableId],
 					[destination.droppableId]: result[destination.droppableId]
-				})
+				}, (state) => this.updateLocalStorage({ ...this.state }))
 
 			}
 
@@ -122,17 +123,7 @@ class App extends Component {
 
 	}
 
-
-	// Clear the localStorage
-	restoreDefault = () => {
-		localStorage.clear();
-		this.componentDidMount();
-	}
-
 	render() {
-
-
-
 		return (
 			<div className="App">
 				<img src={reading_image_1} alt='...' className='reading_image_1' />
@@ -141,10 +132,10 @@ class App extends Component {
 				<Route exact path='/' render={() => (
 					<Container className='bookshelfs'>
 						<button onClick={() => this.setState({ showModal: true })} className='books-manage'>
-							<FaPlus fill='#fff' size={30} />
+							<TiDocumentAdd fill='#fff' size={30} />
 						</button>
 
-						<img src={header_image} alt='...' className='header-image' />
+						<h1> <span role="img" aria-label="books">📚</span> My Reads </h1> 
 
 						<div className='d-flex flex-row align-items-start justify-content-start'>
 							<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
@@ -158,8 +149,8 @@ class App extends Component {
 												<h5> {bookshelf.title} </h5>
 												{this.state[bookshelf.shelf].map((item, index) => (
 													<Draggable
-														key={item.id}
-														draggableId={item.id}
+														key={item.id ? item.id : item.title}
+														draggableId={item.id ? item.id : item.title}
 														index={index}>
 														{(provided, snapshot) => (
 															<div
@@ -168,13 +159,13 @@ class App extends Component {
 																{...provided.dragHandleProps}
 																className='d-flex bookshelf-item'
 															>
-																{item.amazon_link && <ReactTinyLink
-																	cardSize="small"
-																	showGraphic={true}
-																	maxLine={2}
-																	minLine={1}
-																	url={item.amazon_link}
-																/>}
+																<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
+																	<TiDelete  size={20} fill='#ac3333'/>
+																</button>
+																<img src={item.image[0]} />
+																<div className='d-flex flex-column justify-text-center'>
+																	<h5> { item.title } </h5>
+																</div>
 															</div>
 														)}
 													</Draggable>
@@ -191,9 +182,11 @@ class App extends Component {
 
 				<Modal
 					show={this.state.showModal}
+					onHide={() => this.setState({ showModal: false })}
 				>
 					<RegisterBook
 						onSubmit={(url) => this.addBook(url)}
+						onClose={() => this.setState({ showModal: false })}
 					/>
 				</Modal>
 
