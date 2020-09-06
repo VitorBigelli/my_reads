@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ReactTinyLink } from 'react-tiny-link'
 import { InputGroup, Modal, Button, FormControl, Form } from 'react-bootstrap';
-import { validURL } from '../utils/helpers'
+import { validURL } from '../utils'
 
 const RegisterBook = ({ onSubmit, onClose }) => {
 

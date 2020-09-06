@@ -123,20 +123,20 @@ body {
   width: 30%;
   margin: 20px;
   padding: 20px;
-  background-color: rgba(0,0,0,0.16);
+  background-color: rgba(0,0,0,0.7);
   border-radius: 10px;
 }
 
 .droppable_0 {
-  color: rebeccapurple;
+  color: #fc9301;
 }
 
 .droppable_1 {
-  color: tomato;
+  color: #4079eb;
 }
 
 .droppable_2  {
-  color: forestgreen;
+  color: #429446;
 }
 
 .droppable > h5 {

@@ -15,7 +15,7 @@ import reading_image_1 from './assets/reading_image_2.png'
 import reading_image_2 from './assets/reading_image_1.png'
 import { Container, Modal } from 'react-bootstrap';
 
-import { move, reorder, ID } from './utils/helpers'
+import { move, reorder, ID } from './utils'
 import RegisterBook from './components/RegisterBook';
 
 import {
