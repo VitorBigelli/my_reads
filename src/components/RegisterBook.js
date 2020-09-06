@@ -1,58 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageInput from '../ImageInput';
 import serializeForm from 'form-serialize';
-import { Link } from 'react-router-dom';
+import { InputGroup, Modal, Button, FormControl } from 'react-bootstrap';
 
-const RegisterBook = ({onSubmit}) => {
+const RegisterBook = ({ onSubmit }) => {
+
+	const [ link, updateLink ] = useState('')
 	
-	const handleSubmit = (e) => {
-		e.preventDefault()
-
-		const values = serializeForm(e.target, {hash: true})
-
-		if (onSubmit) {
-			onSubmit(values)
-		}
+	const handleSubmit = () => {
+		onSubmit(link)
 	}
 
-		return (
-			<div> 
-				<Link to='/manage' className='my-reads-link'>
-					Back
-				</Link>
-				<div className='add-book-form-container'>
-					
-					<form className='add-book-form' onSubmit={ event => handleSubmit(event)}>
-						<ImageInput 
-							className='new-book-cover'
-							name="cover"
-							maxHeight={200}
-						/>
-						<p> Title: <input 
-							type="text"
-							name="title"
-							className="new-book-title"
-						/></p>
-						<p> Author: <input 
-							type="text"
-							name="author"
-							className="new-book-author"
-						/></p>
-						<p> Shelf:   
-						<select name="shelf" className="new-book-shelf">
-							<option value="currentlyReading"> Currently Reading </option>
-							<option value="wantToRead"> Want to Read</option>
-							<option value="read"> Read </option>
-						</select>
-						</p>
-						<button 
-							type="submit"
-						>Register</button>
+	return (
+		<>
+			<Modal.Header closeButton>
+				<Modal.Title>Add Book</Modal.Title>
+			</Modal.Header>
 
-					</form>
-				</div>
-			</div>
-		)
-	}
+			<Modal.Body>
+				<InputGroup>
+					<FormControl placeholder='Amazon url' value={link} onChange={ (e) => updateLink(e.target.value) }/>
+				</InputGroup>
+			</Modal.Body>
+
+			<Modal.Footer>
+				<Button variant="secondary">Close</Button>
+				<Button variant="primary" onClick={ () => handleSubmit()}>Save</Button>
+			</Modal.Footer>
+		</>
+	)
+}
 
 export default RegisterBook;

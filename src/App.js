@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Route , Link } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
-import BooksSearch from './components/BooksSearch';
 import { books } from './data/books'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
-import RegisterBook from './components/RegisterBook';
-import ManageBooks from './components/ManageBooks';
 
 import { 
 	DragDropContext,
@@ -18,9 +15,15 @@ import {ReactTinyLink} from 'react-tiny-link'
 
 import reading_image_1 from './assets/reading_image_2.png'
 import reading_image_2 from './assets/reading_image_1.png'
-import { Container, Card, Row, Col } from 'react-bootstrap';
+import { Container, Card, Row, Col, Modal, Button } from 'react-bootstrap';
+import header_image from './assets/header.png'
 
-import { move, reorder } from './utils/helpers'
+import { move, reorder, ID } from './utils/helpers'
+import RegisterBook from './components/RegisterBook';
+
+import { 
+	FaPlus
+} from 'react-icons/fa'
 
 
 class App extends Component {
@@ -59,47 +62,17 @@ class App extends Component {
 		});
 	}
 
-	addBook = (book, books = this.state.books) => {
-		const newBooks = books.concat([book])
+	addBook = (url) => {
+		const newBooks = this.state["want_to_read"].concat([{
+			"id": ID(), 
+			"amazon_link": url
+		}])
 
 		this.updateLocalStorage(newBooks)
-		this.updateState(newBooks)
-	}
-
-	// This function is called when the user register a new book
-	registerBook = ({ title, author, cover, shelf}) => {
-
-		const book = {
-			id: this.state.books.length + 1,
-			title: title, 
-			authors: [author],
-			imageLinks: {
-				thumbnail: cover
-			},
-			shelf: shelf 
-		}
-		
-		this.addBook(book)
-	}
-
-	// This function is called when the user updates a book
-	updateBook = (values, book) => {
-
-		const filteredBooks = this.state.books.filter( _ => (_.id !== book.id) )
-
-		const updatedBook = {
-			id: book.id,
-			title: values.title, 
-			authors: values.authors.split('; '),
-			imageLinks: {
-				thumbnail: book.imageLinks.thumbnail
-			},
-			shelf: book.shelf
-		}
-		
-		this.addBook(updatedBook, filteredBooks)
-
-		window.alert('Book updated')
+		this.setState({
+			'want_to_read': newBooks,
+			showModal: false
+		})
 	}
 
 	// This function delete a book
@@ -109,30 +82,8 @@ class App extends Component {
 		this.updateState(filteredBooks)
 	}
 
-	// This function is called when the user change 
-	// a book to a new bookshelf
-	onChangeBookshelf = (book) => {
-		
-		let newBooks = this.state.books.filter( _ => _.id !== book.id)
-
-		if (book.shelf === 'none') {
-			this.deleteBook(book.id)
-		} else {
-			newBooks = newBooks.concat([book])
-		}
-
-		this.updateState(newBooks)
-		this.updateLocalStorage(newBooks)
-	}
-
-	getList(status) {
-		return this.state.books[status]
-	}
-
 	onDragEnd(result) { 
 		const { source, destination } = result 
-
-		console.log(typeof move)
 
 		if (!destination.droppableId) {
 			return null 
@@ -197,9 +148,11 @@ class App extends Component {
 		    
 		    <Route exact path='/' render={ () => (
 		    	<Container className='bookshelfs'>
-			    		<Link to='/manage' className='books-manage' />
+			    	<button onClick={ () => this.setState({ showModal: true })} className='books-manage'>
+						<FaPlus fill='#fff' size={30} />	
+					</button>
 
-		    		<h2 className='my-reads-header'> Vitor Bigelli's reads </h2>
+		    		<img src={header_image} alt='...' className='header-image' />
 
 					<div className='d-flex flex-row align-items-start justify-content-start'>
 						<DragDropContext onDragEnd={ (e) => this.onDragEnd(e)}>
@@ -244,29 +197,14 @@ class App extends Component {
 		    	</Container>
 		    )}/>
 
-
-		    <Route exact path='/register' render={ ({history}) => (
-		    	<RegisterBook onSubmit={ values => {
-		    		this.registerBook(values)
-		    		history.push('/manage')
-		    	}} />
-		    	)}
-		    />
-
-		    <Route exact path='/manage' render={ ({history}) => (
-		    	<ManageBooks 
-		    		books={books}
-		    		updateBook={ (values, book) => {
-		    				this.updateBook(values, book)
-		    				history.push('/')
-		    				}
-		    		}
-		    		deleteBook={ (book) => this.deleteBook(book)}
-		    		restoreDefault={this.restoreDefault}
-		    	/>
-
-		    	)}
-		    />
+			<Modal 
+				show={this.state.showModal}
+			>
+				<RegisterBook 
+					onSubmit={(url) => this.addBook(url)}
+				/>
+			</Modal>
+		    
 		  </div>
 		)
 	}

@@ -36,6 +36,10 @@ body {
   margin: auto;
 }
 
+.header-image {
+  width: 500px;
+}
+
 .my-reads-header {
   height: 100px;
   margin: 0;
@@ -127,14 +131,16 @@ body {
   display: block;
   width: 70px;
   height: 70px;
-  background-image: url('./icons/config.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px;
   font-size: 0;
   position: absolute;
-  left: 0;
-  top: 0;
+  right: 10px;
+  background: transparent !important;
+  border: none;
+  color: #fff;
+  top: 10px;
 }
 
 .bookshelf-list {
