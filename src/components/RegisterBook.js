@@ -25,7 +25,12 @@ const RegisterBook = ({ onSubmit, onClose }) => {
 	useEffect( () => {
 		if (validURL(link) && !response) {
 			toggleLoading(true)
-		} 
+		}  
+
+		if (link.includes('/ref')) {
+			updateLink(link.split('/ref')[0])
+		}
+
 	}, [link, response])
 
 	return (
