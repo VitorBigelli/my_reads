@@ -14,6 +14,8 @@ import {
 	Droppable
 } from 'react-beautiful-dnd'
 
+import {ReactTinyLink} from 'react-tiny-link'
+
 import reading_image_1 from './assets/reading_1.jpeg'
 import reading_image_2 from './assets/reading_2.jpeg'
 import reading_image_3 from './assets/reading_3.jpeg'
@@ -24,7 +26,7 @@ class App extends Component {
 
 	constructor(props) {
 		super(props); 
-		this.state = { books: [], searchResult: [], loading: false }
+		this.state = { books: books, searchResult: [], loading: false }
 	}
 
 	// This function updates the 'myReads' in localStorage
@@ -50,15 +52,10 @@ class App extends Component {
 
 		const cachedBooks = localStorage.getItem('myReads');
 
-		if (cachedBooks) {
-			this.setState( { 
-				books: JSON.parse(cachedBooks), 
-				searchResult: [] 
-			});
-			return;
-		} 
-
-		this.getAllBooks()
+		this.setState( { 
+			books: JSON.parse(cachedBooks), 
+			searchResult: [] 
+		});
 	}
 
 	addBook = (book, books = this.state.books) => {
@@ -208,13 +205,15 @@ class App extends Component {
 															ref={provided.innerRef}
 															{...provided.draggableProps}
 															{...provided.dragHandleProps}
-															className='d-flex flex-row bookshelf-item'
+															className='d-flex bookshelf-item'
 														>
-															<img src={item.cover_url} />
-															<div className='d-flex flex-column justify-content-center book-info'>
-																<h5> { item.title } </h5>
-																<p> { item.author } </p>
-															</div>	
+															{ item.amazon_link && <ReactTinyLink   
+																cardSize="small"
+																showGraphic={true}
+																maxLine={2}
+																minLine={1}
+																url={item.amazon_link} 
+															/>} 
 														</div>
 													)}
 												</Draggable>
