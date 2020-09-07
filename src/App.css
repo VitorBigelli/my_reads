@@ -1,6 +1,6 @@
 body {
   font-family: 'Catamaran', sans-serif;
-  background: #333 !important;
+  background: #fff !important;
 }
 
 .App {
@@ -99,7 +99,7 @@ body {
   right: 10px;
   background: transparent !important;
   border: none;
-  color: #fff;
+  color: #333;
   top: 10px;
 }
 
@@ -124,7 +124,7 @@ body {
   width: 30%;
   margin: 20px;
   padding: 20px;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(150,150,150,0.7);
   border-radius: 10px;
 }
 
@@ -254,6 +254,6 @@ button:hover {
 
 h1 {
   padding: 50px;
-  color: #ffffff;
+  color: #333;
   font-family: 'Bitter', serif;
 }

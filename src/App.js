@@ -133,12 +133,12 @@ class App extends Component {
 				<Route exact path='/' render={() => (
 					<Container className='bookshelfs'>
 						<button onClick={() => this.setState({ showModal: true })} className='books-manage'>
-							<TiDocumentAdd fill='#fff' size={30} />
+							<TiDocumentAdd fill='#333' size={30} />
 						</button>
 
 						<h1> <span role="img" aria-label="books">📚</span> My Reads </h1> 
 
-						<div className='d-flex flex-row align-items-start justify-content-start flex-wrap'>
+						<div className='d-flex flex-row align-items-start justify-content-start fl'>
 							<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
 								{bookshelfs.map((bookshelf, index) => (
 									<Droppable droppableId={bookshelf.shelf} key={index} className='droppable'>
