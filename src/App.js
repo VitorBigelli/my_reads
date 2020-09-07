@@ -138,7 +138,7 @@ class App extends Component {
 
 						<h1> <span role="img" aria-label="books">📚</span> My Reads </h1> 
 
-						<div className='d-flex flex-row align-items-start justify-content-start fl'>
+						<div className='d-flex flex-row align-items-start justify-content-center '>
 							<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
 								{bookshelfs.map((bookshelf, index) => (
 									<Droppable droppableId={bookshelf.shelf} key={index} className='droppable'>
