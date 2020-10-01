@@ -5,6 +5,9 @@ body {
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .App-logo {
@@ -256,4 +259,26 @@ h1 {
   padding: 50px;
   color: #333;
   font-family: 'Bitter', serif;
+}
+
+.login-form {
+  max-width: 400px !important;
+  margin: auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form .input-group {
+  margin-bottom: 10px;
+}
+
+.login-form-footer span {
+  color: #429446;
+}
+
+.login-form-footer span:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
