@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import { books } from '../data/books'
 
 import {
@@ -9,8 +8,6 @@ import {
 } from 'react-beautiful-dnd'
 
 
-import reading_image_1 from '../assets/reading_image_2.png'
-import reading_image_2 from '../assets/reading_image_1.png'
 import { Container, Modal } from 'react-bootstrap';
 
 import { move, reorder, ID } from '../utils'
@@ -124,64 +121,53 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<img src={reading_image_1} alt='...' className='reading_image_1' />
-				<img src={reading_image_2} alt='...' className='reading_image_2' />
-
-				<Route exact path='/' render={() => (
-					<Container className='bookshelfs'>
-						<button onClick={() => this.setState({ showModal: true })} className='books-manage'>
-							<TiDocumentAdd fill='#333' size={30} />
-						</button>
-
-						<h1> <span role="img" aria-label="books">📚</span> My Reads </h1> 
-
-						<div className='d-flex flex-row align-items-start justify-content-center '>
-							<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
-								{bookshelfs.map((bookshelf, index) => (
-									<Droppable droppableId={bookshelf.shelf} key={index} className='droppable'>
-										{(provided, snapshot) => (
-											<div
-												ref={provided.innerRef}
-												className={`droppable droppable_${index}`}
-											>
-												<h5> {bookshelf.title} ({this.state[bookshelf.shelf].length }) </h5> 
-												<div className='scroll'>
-													{this.state[bookshelf.shelf].map((item, index) => (
-														<Draggable
-															key={item.id ? item.id : item.title}
-															draggableId={item.id ? item.id : item.title}
-															index={index}>
-															{(provided, snapshot) => (
-																<div
-																	ref={provided.innerRef}
-																	{...provided.draggableProps}
-																	{...provided.dragHandleProps}
-																	className='d-flex bookshelf-item align-items-center'
-																>
-																	<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
-																		<TiDelete  size={20} fill='#ac3333'/>
-																	</button>
-																	<a href={item.url} className='link-button' target='_black' >
-																		<TiLink  size={20} fill='purple'/>
-																	</a>
-																	<img src={item.image[0]} alt='book-cover' />
-																	<h5> { item.title } </h5>
-																</div>
-															)}
-														</Draggable>
-													))}
-												</div>
-												{provided.placeholder}
-											</div>
-										)}
-									</Droppable>
-								))}
-							</DragDropContext>
-						</div>
-					</Container>
-				)} />
-
+			<Container className='home'>
+				<button onClick={() => this.setState({ showModal: true })} className='books-manage'>
+					<TiDocumentAdd fill='#333' size={30} />
+				</button>
+				<div className='d-flex flex-row align-items-start justify-content-center lists-container'>
+					<DragDropContext onDragEnd={(e) => this.onDragEnd(e)}>
+						{bookshelfs.map((bookshelf, index) => (
+							<Droppable droppableId={bookshelf.shelf} key={index} className='droppable'>
+								{(provided, snapshot) => (
+									<div
+										ref={provided.innerRef}
+										className={`droppable droppable_${index}`}
+									>
+										<h5> {bookshelf.title} ({this.state[bookshelf.shelf].length }) </h5> 
+										<div className='scroll'>
+											{this.state[bookshelf.shelf].map((item, index) => (
+												<Draggable
+													key={item.id ? item.id : item.title}
+													draggableId={item.id ? item.id : item.title}
+													index={index}>
+													{(provided, snapshot) => (
+														<div
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															className='d-flex bookshelf-item align-items-center'
+														>
+															<button onClick={() => this.deleteBook(bookshelf.shelf, index)}  className='delete-button' >
+																<TiDelete  size={20} fill='#ac3333'/>
+															</button>
+															<a href={item.url} className='link-button' target='_black' >
+																<TiLink  size={20} fill='purple'/>
+															</a>
+															<img src={item.image[0]} alt='book-cover' />
+															<h5> { item.title } </h5>
+														</div>
+													)}
+												</Draggable>
+											))}
+										</div>
+										{provided.placeholder}
+									</div>
+								)}
+							</Droppable>
+						))}
+					</DragDropContext>
+				</div>
 				<Modal
 					show={this.state.showModal}
 					onHide={() => this.setState({ showModal: false })}
@@ -192,8 +178,7 @@ class App extends Component {
 					/>
 				</Modal>
 
-
-			</div>
+			</Container>
 		)
 	}
 }

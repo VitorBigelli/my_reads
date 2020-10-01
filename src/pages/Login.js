@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Container, Button, InputGroup, FormControl } from 'react-bootstrap'
 
-function Login() { 
+function Login({ history }) { 
 
     const [ formType, toggleFormType ] = useState(0);
 
+    const onConfirm = () => {
+
+        history.push('/home')
+
+    }
+
     return (
             <Container className='login-form'>
-                <h1> <span role="img" aria-label="books">📚</span> My Reads </h1> 
                 <InputGroup>
                     <FormControl
-                        placeholder='Usuário'
+                        placeholder='E-mail'
                     />
                 </InputGroup>
                 <InputGroup>
@@ -27,7 +33,7 @@ function Login() {
                         />
                     </InputGroup> 
                 }
-                <Button > { formType === 1 ? 'Confirmar' : 'Entrar' } </Button> 
+                <Button onClick={() => onConfirm() }> { formType === 1 ? 'Confirmar' : 'Entrar' } </Button> 
                 <div className='login-form-footer'>
                     { 
                         formType === 0 ? 
@@ -40,4 +46,4 @@ function Login() {
     )
 }
 
-export default Login
+export default withRouter(Login)

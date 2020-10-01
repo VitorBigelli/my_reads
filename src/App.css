@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  justify-content: center;
 }
 
 .App-logo {
@@ -127,21 +128,11 @@ body {
   width: 30%;
   margin: 20px;
   padding: 20px;
-  background-color: rgba(150,150,150,0.7);
+  background-color: #cecece;
   border-radius: 10px;
+  color: #6c63ff;
 }
 
-.droppable_0 {
-  color: #fc9301;
-}
-
-.droppable_1 {
-  color: #4079eb;
-}
-
-.droppable_2  {
-  color: #429446;
-}
 
 .droppable > h5 {
   padding: 10px;
@@ -256,29 +247,46 @@ button:hover {
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap');
 
 h1 {
-  padding: 50px;
+  padding: 20px;
   color: #333;
   font-family: 'Bitter', serif;
+  height: calc(10vh - 20px);
 }
 
 .login-form {
   max-width: 400px !important;
-  margin: auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.login-form .input-group {
+.login-form .input-group,
+.login-form button {
   margin-bottom: 10px;
 }
 
+.login-form button,
+.login-form button:active,
+.login-form button:focus {
+  background-color: #6c63ff;
+  border: none;
+  box-shadow: none;
+} 
+
+.login-form button:hover{
+  background-color: #9c53dd;
+}
+
 .login-form-footer span {
-  color: #429446;
+  color: #6c63ff;
 }
 
 .login-form-footer span:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.lists-container {
+  height: 90vh;
 }
