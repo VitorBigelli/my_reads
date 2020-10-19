@@ -67,8 +67,11 @@ const RegisterBook = ({ onSubmit, onClose }) => {
 			}
 
 			<Modal.Footer>
-				<Button variant="secondary" onClick={ () => onClose()} >Close</Button>
-				<Button disabled={!link || !validURL(link)} variant="primary" onClick={ () => handleSubmit()} >Save</Button>
+				{ 
+					!link || !validURL(link) ?
+					null :
+					<Button className='save-button' onClick={ () => handleSubmit()} >Save</Button>
+				}
 			</Modal.Footer>
 		</>
 	)

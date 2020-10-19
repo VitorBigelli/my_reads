@@ -268,14 +268,20 @@ h1 {
 
 .login-form button,
 .login-form button:active,
-.login-form button:focus {
+.login-form button:focus,
+.save-button, 
+.save-button:active, 
+.save-button:focus {
   background-color: #6c63ff;
   border: none;
   box-shadow: none;
 } 
 
-.login-form button:hover{
-  background-color: #9c53dd;
+.login-form button:hover,
+.save-button:hover,
+.save-button:disabled {
+  background-color: #9c53dd !important;
+  border: none;
 }
 
 .login-form-footer span {
